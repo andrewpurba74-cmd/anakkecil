@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Caca 💖 - Pesan dari Andrew</title>
+    <meta name="description" content="Pesan-pesan manis dari Andrew untuk Caca">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #ff8e8e;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            color: #ff8e8e;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            height: 400px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-front {
+            background-color: white;
+            color: #333;
+        }
+
+        .card-back {
+            background-color: white;
+            color: #333;
+            transform: rotateY(180deg);
+            text-align: left;
+            justify-content: space-between;
+        }
+
+        .card:nth-child(1) .card-front {
+            background: linear-gradient(135deg, #ffdcb5, #ffc3a0);
+        }
+
+        .card:nth-child(2) .card-front {
+            background: linear-gradient(135deg, #ffb5b5, #ffafbd);
+        }
+
+        .card:nth-child(3) .card-front {
+            background: linear-gradient(135deg, #b5e3ff, #a0d1ff);
+        }
+
+        .card:nth-child(4) .card-front {
+            background: linear-gradient(135deg, #c9ffb5, #a0ffc3);
+        }
+
+        .card:nth-child(5) .card-front {
+            background: linear-gradient(135deg, #e6b5ff, #d1a0ff);
+        }
+
+        .card:nth-child(6) .card-front {
+            background: linear-gradient(135deg, #fff9b5, #ffffa0);
+        }
+
+        .card-front-content {
+            text-align: center;
+        }
+
+        .card-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .card-instruction {
+            font-size: 1rem;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        .card-back-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .card-emotes {
+            font-size: 1.8rem;
+        }
+
+        .card-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .floating-emotes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-emote {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: float 8s linear infinite;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                height: 350px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Untuk Caca 💖</h1>
+            <p class="subtitle">Pesan-pesan kecil dari Andrew</p>
+            <p class="instructions">Klik pada kartu untuk membuka pesan rahasia! ✨</p>
+        </div>
+        
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">💌</div>
+                            <div class="card-title">Sapaanku</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Halo Caca! Apa kabar? Aku harap kamu sehat selalu ya. Udah lama banget kita nggak kabar-kabaran, jadi aku kangen buat nyapa kamu.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">😊💕</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">😅</div>
+                            <div class="card-title">Maaf...</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Maaf ya tiba-tiba aku kirim ini. Aku cuma pengen nyapa aja kok, nggak ada maksud lain. Kadang aku ingat obrolan-obrolan seru kita dulu.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">😅🐱</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">💬</div>
+                            <div class="card-title">Ngobrol Yuk</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Gimana aktivitasmu sekarang? Pasti sibuk banget ya? Aku harap semuanya berjalan lancar dan kamu bahagia dengan apa yang kamu lakukan.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">✨</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">😳</div>
+                            <div class="card-title">Jujur Aja...</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Jujur aja, aku agak nervous nulis ini. Takut kamu mikir aneh-aneh. Tapi beneran kok, aku cuma pengen menyapa dan nanya kabar aja.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">😳🐾</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">😄</div>
+                            <div class="card-title">Kenangan</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Kadang aku ingat waktu kita masih sering ngobrol. Seru banget ya! Kamu selalu bisa bikin suasana jadi lebih cerah dengan cerita-ceritamu.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">😄🌟</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-front-content">
+                            <div class="card-emoji">🤗</div>
+                            <div class="card-title">Penutup</div>
+                            <p class="card-instruction pulse">Klik untuk membuka!</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content">
+                            <p>Yaudah deh, aku nggak mau bikin kamu bingung. Sekali lagi, aku cuma pengen nyapa dan nanya kabar aja. Semoga kamu baik-baik aja di sana!</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-emotes">🤗💝</div>
+                            <div class="card-signature">Andrew</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>~makasih udh baca ya! 💌</p>
+        </div>
+    </div>
+    
+    <div class="floating-emotes" id="floatingEmotes"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingEmotes = document.getElementById('floatingEmotes');
+            const emotes = ['😻', '💖', '🐱', '🥰', '💕', '😽', '🐾', '💘', '✨', '💝', '🐈', '🌟'];
+            const cards = document.querySelectorAll('.card');
+            
+            // Fungsi untuk membuat emote mengambang
+            function createFloatingEmote() {
+                const emote = document.createElement('div');
+                emote.className = 'floating-emote';
+                emote.textContent = emotes[Math.floor(Math.random() * emotes.length)];
+                emote.style.left = Math.random() * 100 + 'vw';
+                emote.style.animationDuration = (5 + Math.random() * 10) + 's';
+                emote.style.animationDelay = Math.random() * 5 + 's';
+                floatingEmotes.appendChild(emote);
+                
+                // Hapus emote setelah animasi selesai
+                setTimeout(() => {
+                    emote.remove();
+                }, 15000);
+            }
+            
+            // Buat emote mengambang secara berkala
+            setInterval(createFloatingEmote, 1000);
+            
+            // Buat beberapa emote di awal
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createFloatingEmote, i * 300);
+            }
+            
+            // Tambahkan event listener untuk flip card
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
