@@ -3,6 +3,693 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Untuk Caca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes sadShake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            75% { transform: translateX(5px) rotate(2deg); }
+        }
+        .animate-gentle-bounce { animation: gentleBounce 3s ease-in-out infinite; }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+        .animate-sad-shake { animation: sadShake 0.5s ease-in-out; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f472b6;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="font-inter min-h-screen bg-gradient-to-br from-rose-50 to-pink-50 p-4">
+    <div class="max-w-2xl mx-auto">
+        <!-- Header Minimal -->
+        <div class="text-center mb-8">
+            <div class="inline-block mb-4">
+                <div class="text-4xl mb-2 animate-gentle-bounce">💌</div>
+                <div class="h-1 w-16 bg-pink-300 mx-auto rounded-full"></div>
+            </div>
+            <h1 class="text-2xl text-gray-800 font-medium">Untuk Caca</h1>
+            <p class="text-sm text-gray-500 mt-2">dari Nathan yang selalu sayang</p>
+        </div>
+
+        <!-- Main Card -->
+        <div id="app" class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-sm border border-pink-100 p-6">
+            <!-- Progress Minimal -->
+            <div class="flex justify-center gap-1 mb-8">
+                <div class="h-1 w-6 bg-pink-400 rounded-full step-indicator active"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+                <div class="h-1 w-6 bg-gray-200 rounded-full step-indicator"></div>
+            </div>
+
+            <!-- Content -->
+            <div id="content" class="animate-fade-in">
+                <!-- Content akan diisi oleh JavaScript -->
+                <div class="text-center space-y-6">
+                    <div class="text-5xl mb-2">🌸</div>
+                    <h2 class="text-xl text-gray-800 font-medium">Hai Caca!</h2>
+                    <p class="text-gray-600 leading-relaxed max-w-md mx-auto">
+                        Nathan ada sesuatu yang spesial untuk kamu hari ini...
+                    </p>
+                    <button onclick="nextStep()" 
+                            class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-md active:scale-95">
+                        <span>Buka Surat</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Indicator -->
+            <div class="text-center mt-8">
+                <span class="text-xs text-gray-400">
+                    <span id="current-page">1</span>/<span id="total-pages">8</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Footer Minimal -->
+        <div class="text-center mt-6">
+            <p class="text-xs text-gray-400">💕</p>
+        </div>
+    </div>
+
+    <script>
+        // State management dengan counter kesalahan
+        const state = {
+            currentStep: 0,
+            showFeedback: false,
+            feedback: {},
+            unlocked: [false, false, false, false, false],
+            showNext: false,
+            wrongAnswerCount: 0, // Counter untuk kesalahan dalam pertanyaan
+            heartWrongCount: 0   // Counter khusus untuk game hati
+        };
+
+        // Steps data dengan gambar yang lengkap
+        const steps = [
+            {
+                type: 'intro',
+                title: 'Hai Caca! 🌸',
+                text: 'Nathan ada sesuatu yang spesial untuk kamu hari ini...',
+                button: 'Buka Surat →'
+            },
+            {
+                type: 'question',
+                title: 'Pertanyaan 1',
+                text: 'Kalau Nathan jadi tukang bakso, kamu mau jadi apa?',
+                options: [
+                    { 
+                        text: 'Tukang cuci mangkok', 
+                        emoji: '🥣',
+                        correct: false, 
+                        response: 'Yahh... Nathan sedih deh, kamu ga mau barengan sama Nathan ya? 😢',
+                        image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+                    },
+                    { 
+                        text: 'Baksonya', 
+                        emoji: '❤️',
+                        correct: true, 
+                        response: 'Yes! Kamu baksonya Nathan! Selalu di hati! 🥰',
+                        image: 'https://i.ibb.co.com/TxXFRY4h/Lucu3.webp'
+                    },
+                    { 
+                        text: 'Tukang ngitung duit', 
+                        emoji: '💰',
+                        correct: false, 
+                        response: 'Kamu mau Nathan jadi mesin ATM aja ya? Cinta Nathan ga bisa diukur dengan uang... 💔',
+                        image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+                    }
+                ]
+            },
+            {
+                type: 'message',
+                title: 'Pesan Spesial',
+                text: 'Tau ga Caca? Kalau aku lagi sedih, aku inget muka kamu...',
+                button: 'Lanjut',
+                nextText: 'Langsung ketawa sendiri mikirin betapa beruntungnya aku punya kamu! 😊',
+                image: 'https://i.ibb.co.com/wtrbbjz/lucu.webp'
+            },
+            {
+                type: 'question',
+                title: 'Pertanyaan 2',
+                text: 'Kalau kamu lagi bad mood, Nathan harus ngapain?',
+                options: [
+                    { 
+                        text: 'Diem aja', 
+                        emoji: '😶',
+                        correct: false, 
+                        response: 'Nathan pengen bantu tapi disuruh diem... Kamu ga mau cerita sama Nathan? 😔',
+                        image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+                    },
+                    { 
+                        text: 'Beliin makan', 
+                        emoji: '🍕',
+                        correct: false, 
+                        response: 'Makanan doang? Kamu cuma butuh makan ya, bukan Nathan? 💔',
+                        image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+                    },
+                    { 
+                        text: 'Peluk kamu', 
+                        emoji: '🤗',
+                        correct: true, 
+                        response: 'Yes! Siap jadi pelukis mood kamu! Pelukan Nathan khusus untuk Caca! 💖',
+                        image: 'https://i.ibb.co.com/Jw56JsWF/lucu4.webp'
+                    }
+                ]
+            },
+            {
+                type: 'choice',
+                title: 'Kamu Tau Ga?',
+                text: 'Nathan itu...',
+                options: [
+                    { 
+                        text: 'Bucin banget sama kamu', 
+                        emoji: '😍',
+                        response: 'Fakta! Level bucin: MAXIMUM! 🌟',
+                        image: 'https://i.ibb.co.com/wtrbbjz/lucu.webp'
+                    },
+                    { 
+                        text: 'Kangen kamu tiap detik', 
+                        emoji: '⏰',
+                        response: 'Detik, menit, jam... selalu! 🕰️❤️',
+                        image: 'https://i.ibb.co.com/cKp23sHK/lucu2.webp'
+                    },
+                    { 
+                        text: 'Pengen selalu bikin kamu ketawa', 
+                        emoji: '😂',
+                        response: 'Misi hidup: senyum Caca! 😁',
+                        image: 'https://i.ibb.co.com/TxXFRY4h/Lucu3.webp'
+                    },
+                    { 
+                        text: 'Semua jawaban benar!', 
+                        emoji: '✨',
+                        response: 'BINGO! Nathan 100% buat Caca! 🎯',
+                        image: 'https://i.ibb.co.com/Jw56JsWF/lucu4.webp'
+                    }
+                ],
+                correct: 3
+            },
+            {
+                type: 'game',
+                title: 'Mini Game',
+                text: 'Pilih hati Nathan yang sebenarnya',
+                hearts: 5
+            },
+            {
+                type: 'message',
+                title: 'Fun Fact',
+                text: 'Tau ga sih...',
+                button: 'Lanjut',
+                nextText: 'Setiap kali kamu senyum, Nathan auto senyum juga! 😄',
+                image: 'https://i.ibb.co.com/xtkvLGMW/lucu5.webp'
+            },
+            {
+                type: 'final',
+                title: 'Selesai!',
+                text: 'Kamu udah baca semua surat cinta dari Nathan!',
+                image: 'https://i.ibb.co.com/cKp23sHK/lucu2.webp'
+            },
+            {
+                type: 'sad-ending-heart',
+                title: 'Aduh... Nathan Sedih Banget 💔',
+                text: 'Kamu salah 2x memilih hati Nathan...',
+                image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+            },
+            {
+                type: 'sad-ending-answers',
+                title: 'Nathan Sedih Tapi Tetap Lucu 😢',
+                text: 'Kamu udah salah 3x jawab pertanyaan Nathan...',
+                image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp'
+            }
+        ];
+
+        // Helper functions
+        function updateProgress() {
+            const indicators = document.querySelectorAll('.step-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index <= state.currentStep && index < 8) {
+                    indicator.classList.remove('bg-gray-200');
+                    indicator.classList.add('bg-pink-400');
+                } else {
+                    indicator.classList.remove('bg-pink-400');
+                    indicator.classList.add('bg-gray-200');
+                }
+            });
+            
+            // Update page numbers
+            const currentPage = state.currentStep < 8 ? state.currentStep + 1 : '😢';
+            document.getElementById('current-page').textContent = currentPage;
+            document.getElementById('total-pages').textContent = '8';
+        }
+
+        function nextStep() {
+            if (state.currentStep < steps.length - 3) { // Exclude sad endings
+                state.currentStep++;
+                state.showFeedback = false;
+                state.showNext = false;
+                renderStep();
+            }
+        }
+
+        function showNextMessage() {
+            state.showNext = true;
+            renderStep();
+        }
+
+        function tryAgain() {
+            state.showFeedback = false;
+            renderStep();
+        }
+
+        function handleAnswer(optionIndex) {
+            const step = steps[state.currentStep];
+            const option = step.options[optionIndex];
+            
+            if (!option.correct) {
+                state.wrongAnswerCount++;
+                
+                // Cek jika sudah salah 3x total
+                if (state.wrongAnswerCount >= 3) {
+                    state.currentStep = 9; // Index untuk sad-ending-answers
+                    renderStep();
+                    return;
+                }
+            }
+            
+            state.feedback = {
+                text: option.response,
+                image: option.image,
+                isCorrect: option.correct,
+                optionIndex: optionIndex
+            };
+            state.showFeedback = true;
+            renderStep();
+            
+            if (option.correct) {
+                setTimeout(nextStep, 2500);
+            }
+        }
+
+        function handleChoice(optionIndex) {
+            const step = steps[state.currentStep];
+            const option = step.options[optionIndex];
+            
+            state.feedback = {
+                text: option.response,
+                image: option.image,
+                isCorrect: (optionIndex === step.correct),
+                optionIndex: optionIndex
+            };
+            state.showFeedback = true;
+            renderStep();
+            
+            if (optionIndex === step.correct) {
+                setTimeout(nextStep, 2500);
+            }
+        }
+
+        function handleHeartClick(index) {
+            if (state.unlocked[index]) return;
+            
+            const newUnlocked = [...state.unlocked];
+            newUnlocked[index] = true;
+            state.unlocked = newUnlocked;
+            
+            if (index === 2) {
+                state.feedback = {
+                    text: 'Ketemu! Ini hati Nathan untuk Caca 💕',
+                    image: 'https://i.ibb.co.com/TxXFRY4h/Lucu3.webp',
+                    isCorrect: true
+                };
+                state.showFeedback = true;
+                setTimeout(nextStep, 2500);
+            } else {
+                // Salah pilih hati
+                state.heartWrongCount++;
+                
+                // Cek jika sudah salah 2x
+                if (state.heartWrongCount >= 2) {
+                    state.currentStep = 8; // Index untuk sad-ending-heart
+                    renderStep();
+                    return;
+                }
+                
+                state.feedback = {
+                    text: `Salah ${state.heartWrongCount}x! ${state.heartWrongCount === 1 ? 'Coba lagi!' : 'Nathan sedih...'}`,
+                    image: 'https://i.ibb.co.com/zWF6YrT4/lucu6.webp',
+                    isCorrect: false
+                };
+                state.showFeedback = true;
+                setTimeout(() => {
+                    state.showFeedback = false;
+                    renderStep();
+                }, 1800);
+            }
+            renderStep();
+        }
+
+        function restartGame() {
+            state.currentStep = 0;
+            state.showFeedback = false;
+            state.showNext = false;
+            state.unlocked = [false, false, false, false, false];
+            state.wrongAnswerCount = 0;
+            state.heartWrongCount = 0;
+            renderStep();
+        }
+
+        // Render function
+        function renderStep() {
+            const contentDiv = document.getElementById('content');
+            const step = steps[state.currentStep];
+            
+            updateProgress();
+            contentDiv.classList.add('animate-fade-in');
+            
+            setTimeout(() => {
+                contentDiv.classList.remove('animate-fade-in');
+            }, 400);
+
+            if (step.type === 'intro') {
+                contentDiv.innerHTML = `
+                    <div class="text-center space-y-6">
+                        <div class="text-5xl mb-2">🌸</div>
+                        <h2 class="text-xl text-gray-800 font-medium">${step.title}</h2>
+                        <p class="text-gray-600 leading-relaxed max-w-md mx-auto">
+                            ${step.text}
+                        </p>
+                        <button onclick="nextStep()" 
+                                class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-md active:scale-95">
+                            <span>${step.button}</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                `;
+            }
+            else if (step.type === 'question') {
+                if (!state.showFeedback) {
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="text-center">
+                                <div class="text-sm text-pink-500 font-medium mb-1">${step.title}</div>
+                                <p class="text-gray-700 mb-6">${step.text}</p>
+                                <div class="text-xs text-gray-500 mb-2">
+                                    Kesalahan: ${state.wrongAnswerCount}/3
+                                </div>
+                            </div>
+                            <div class="space-y-3 max-w-sm mx-auto">
+                                ${step.options.map((option, index) => `
+                                    <button onclick="handleAnswer(${index})"
+                                            class="w-full flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:border-pink-200 hover:bg-pink-50 transition-all duration-200 text-left group">
+                                        <div class="flex items-center gap-3">
+                                            <span class="text-lg">${option.emoji}</span>
+                                            <span class="text-gray-700">${option.text}</span>
+                                        </div>
+                                        <span class="text-gray-400 group-hover:text-pink-400">→</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const isCorrect = state.feedback.isCorrect;
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6 animate-fade-in">
+                            <div class="text-center">
+                                <img src="${state.feedback.image}" 
+                                     alt="${isCorrect ? 'Nathan senang' : 'Nathan sedih'}" 
+                                     class="w-48 h-48 mx-auto rounded-xl object-cover mb-4 shadow-sm">
+                                <div class="p-4 rounded-lg ${isCorrect ? 'bg-green-50' : 'bg-blue-50'}">
+                                    <p class="text-gray-700 ${isCorrect ? 'text-green-700' : 'text-blue-700'}">
+                                        ${state.feedback.text}
+                                    </p>
+                                    <div class="text-xs text-gray-500 mt-2">
+                                        Total kesalahan: ${state.wrongAnswerCount}
+                                    </div>
+                                    ${!isCorrect ? `
+                                        <div class="mt-4 flex gap-2 justify-center">
+                                            <button onclick="tryAgain()"
+                                                    class="px-4 py-2 text-sm bg-pink-500 hover:bg-pink-600 text-white rounded-lg transition-colors">
+                                                Coba Lagi
+                                            </button>
+                                            <button onclick="nextStep()"
+                                                    class="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition-colors">
+                                                Lanjut
+                                            </button>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            else if (step.type === 'message') {
+                if (!state.showNext) {
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="text-center">
+                                <div class="text-sm text-pink-500 font-medium mb-1">${step.title}</div>
+                                <p class="text-gray-700 mb-6">${step.text}</p>
+                            </div>
+                            <div class="text-center">
+                                <button onclick="showNextMessage()"
+                                        class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-md">
+                                    ${step.button}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6 animate-fade-in">
+                            <div class="text-center">
+                                <img src="${step.image}" 
+                                     alt="Pesan spesial Nathan" 
+                                     class="w-56 h-56 mx-auto rounded-xl object-cover mb-4 shadow-sm">
+                                <div class="bg-pink-50 p-4 rounded-lg">
+                                    <p class="text-gray-700">
+                                        ${step.nextText}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button onclick="nextStep()"
+                                        class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200">
+                                    Lanjut →
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            else if (step.type === 'choice') {
+                if (!state.showFeedback) {
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="text-center">
+                                <div class="text-sm text-pink-500 font-medium mb-1">${step.title}</div>
+                                <p class="text-gray-700 mb-6">${step.text}</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 max-w-sm mx-auto">
+                                ${step.options.map((option, index) => `
+                                    <button onclick="handleChoice(${index})"
+                                            class="p-4 rounded-lg border border-gray-200 hover:border-pink-200 hover:bg-pink-50 transition-all duration-200">
+                                        <div class="text-lg mb-1">${option.emoji}</div>
+                                        <div class="text-sm text-gray-700">${option.text}</div>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const isCorrect = state.feedback.isCorrect;
+                    contentDiv.innerHTML = `
+                        <div class="space-y-6 animate-fade-in">
+                            <div class="text-center">
+                                <img src="${state.feedback.image}" 
+                                     alt="Respons Nathan" 
+                                     class="w-48 h-48 mx-auto rounded-xl object-cover mb-4 shadow-sm">
+                                <div class="p-4 rounded-lg ${isCorrect ? 'bg-green-50' : 'bg-blue-50'}">
+                                    <p class="text-gray-700 ${isCorrect ? 'text-green-700' : 'text-blue-700'}">
+                                        ${state.feedback.text}
+                                    </p>
+                                    ${!isCorrect ? `
+                                        <button onclick="tryAgain()"
+                                                class="mt-4 px-4 py-2 text-sm bg-pink-500 hover:bg-pink-600 text-white rounded-lg transition-colors">
+                                            Coba Lagi
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            else if (step.type === 'game') {
+                contentDiv.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <div class="text-sm text-pink-500 font-medium mb-1">${step.title}</div>
+                            <p class="text-gray-700 mb-6">${step.text}</p>
+                            <div class="text-xs text-gray-500 mb-4">
+                                Kesalahan: ${state.heartWrongCount}/2
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-3 flex-wrap">
+                            ${Array(5).fill().map((_, index) => `
+                                <button onclick="handleHeartClick(${index})"
+                                        class="text-4xl transition-transform ${state.unlocked[index] ? 'opacity-50' : 'hover:scale-110'}">
+                                    ${state.unlocked[index] ? (index === 2 ? '💖' : '💔') : '❤️'}
+                                </button>
+                            `).join('')}
+                        </div>
+                        ${state.showFeedback ? `
+                            <div class="animate-fade-in text-center">
+                                <img src="${state.feedback.image}" 
+                                     alt="${state.feedback.isCorrect ? 'Hati Nathan' : 'Coba lagi'}" 
+                                     class="w-48 h-48 mx-auto rounded-xl object-cover mb-4 shadow-sm">
+                                <div class="p-4 rounded-lg ${state.feedback.isCorrect ? 'bg-green-50' : 'bg-blue-50'}">
+                                    <p class="text-gray-700">
+                                        ${state.feedback.text}
+                                    </p>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            else if (step.type === 'final') {
+                contentDiv.innerHTML = `
+                    <div class="space-y-6 animate-fade-in">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🎉</div>
+                            <h2 class="text-xl text-gray-800 font-medium mb-2">${step.title}</h2>
+                            <p class="text-gray-600 mb-6">${step.text}</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="${step.image}" 
+                                 alt="Selamat dari Nathan" 
+                                 class="w-64 h-64 mx-auto rounded-xl object-cover mb-6 shadow-sm">
+                        </div>
+                        <div class="bg-pink-50 rounded-lg p-6 text-center">
+                            <p class="text-gray-700 mb-4">
+                                "Caca, terima kasih sudah jadi orang yang paling bikin hidup Nathan berwarna."
+                            </p>
+                            <p class="text-sm text-gray-500">- Nathan 💕</p>
+                        </div>
+                        <div class="text-center">
+                            <button onclick="restartGame()"
+                                    class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200">
+                                Baca Lagi dari Awal
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (step.type === 'sad-ending-heart') {
+                contentDiv.innerHTML = `
+                    <div class="space-y-6 animate-fade-in animate-sad-shake">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2">💔</div>
+                            <h2 class="text-xl text-gray-800 font-medium mb-2">${step.title}</h2>
+                            <p class="text-gray-600 mb-4">${step.text}</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="${step.image}" 
+                                 alt="Nathan sedih banget" 
+                                 class="w-64 h-64 mx-auto rounded-xl object-cover mb-6 shadow-sm">
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-6 text-center">
+                            <p class="text-gray-700 mb-3">
+                                "Aduh Caca... Kamu salah 2x milih hati Nathan 😭"
+                            </p>
+                            <p class="text-gray-700 mb-3">
+                                "Nathan sedih banget nih, tapi lucu kan masih bisa ketawa sambil nangis? 😂💔"
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                "Nathan cuma punya satu hati khusus buat Caca, tapi kamu pilih yang lain mulu..."
+                            </p>
+                            <p class="text-sm text-gray-500">- Nathan yang hati-hatinya sakit 💔</p>
+                        </div>
+                        <div class="text-center">
+                            <button onclick="restartGame()"
+                                    class="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200">
+                                Main Lagi (Biar Nathan senang)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (step.type === 'sad-ending-answers') {
+                contentDiv.innerHTML = `
+                    <div class="space-y-6 animate-fade-in animate-sad-shake">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2">😢</div>
+                            <h2 class="text-xl text-gray-800 font-medium mb-2">${step.title}</h2>
+                            <p class="text-gray-600 mb-4">${step.text}</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="${step.image}" 
+                                 alt="Nathan sedih tapi lucu" 
+                                 class="w-64 h-64 mx-auto rounded-xl object-cover mb-6 shadow-sm">
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-6 text-center">
+                            <p class="text-gray-700 mb-3">
+                                "Caca... Kamu udah salah 3x jawab pertanyaan Nathan 😢"
+                            </p>
+                            <p class="text-gray-700 mb-3">
+                                "Nathan sedih banget nih, rasanya kayak bakso kehilangan bumbu 😂"
+                            </p>
+                            <p class="text-gray-700 mb-3">
+                                "Tapi gapapa deh, Nathan masih sayang kok sama Caca! ❤️"
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                "Mungkin Caca perlu belajar lagi tentang Nathan nih, hehe!"
+                            </p>
+                            <p class="text-sm text-gray-500">- Nathan yang sedih tapi tetap lucu 😂💕</p>
+                        </div>
+                        <div class="text-center">
+                            <button onclick="restartGame()"
+                                    class="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200">
+                                Ayo Coba Lagi!
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderStep);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christmas Gift for Caca</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
