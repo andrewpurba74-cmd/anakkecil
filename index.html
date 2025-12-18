@@ -123,7 +123,7 @@
                     <div class="mb-4 text-center">
                         <div class="inline-flex items-center gap-2 bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm mb-2">
                             <i class="fas fa-fire text-orange-500"></i>
-                            <span>Game for anak kecil!</span>
+                            <span>Game Anti-Boring!</span>
                         </div>
                         <p class="text-gray-700 text-sm">
                             Klik balon-balon lucunya sebelum mereka kabur ke awan! 🌤️<br>
@@ -152,7 +152,7 @@
                                             <div class="font-semibold mb-1">Aturan lucu:</div>
                                             1. Klik balon yang paling menggemaskan!<br>
                                             2. Balon emoji ✨ = JACKPOT!<br>
-                                            3. Kalau bisa, caca senyum ya
+                                            3. Kalau bisa, jangan sampe ketawa sendiri! 😆
                                         </div>
                                         <button onclick="startBalloonGame()" 
                                                 class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-3 rounded-lg text-sm font-bold hover:shadow-xl transition-all hover:scale-105 active:scale-95 group">
@@ -210,7 +210,7 @@
                                 <div class="text-2xl animate-wiggle">💬</div>
                                 <div class="flex-1">
                                     <p class="text-sm text-gray-700 font-medium" id="balloonMessageText">
-                                        Siap-siap pecahin balon! 
+                                        Siap-siap pecahin balon! Tapi jangan sampe ketawa ngilu! 😂
                                     </p>
                                     <div class="text-xs text-gray-500 mt-1 italic" id="balloonSubMessage">
                                         Tips: Balon warna pink itu yang paling manja! 💕
@@ -222,11 +222,12 @@
                         <!-- Funny Tips -->
                         <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-3 border-2 border-yellow-300">
                             <div class="flex items-start gap-3">
+                                <div class="text-2xl animate-bounce">🤡</div>
                                 <div>
                                     <div class="text-xs font-bold text-gray-800 mb-1">FAKTA LUCU NATHAN:</div>
                                     <div class="text-xs text-gray-700">
-                                        "Dulu Nathan suka senyum kalo anak kecil senyum!<br>
-                                        Jadi anak kecil harus senyum ya!"
+                                        "Dulu Nathan bikin game ini, malah ketawa sendiri 10 menit!<br>
+                                        Sampe balonnya pada kabur nangis! 😭"
                                     </div>
                                 </div>
                             </div>
@@ -390,11 +391,11 @@
                         
                         <div class="space-y-2">
                             <p class="text-gray-700">
-                                "Jadi, main game ini dulu yaa~ Biar stressnya pada kabur ke Nathan! 🐱"
+                                "Jadi, main game ini dulu yaa~ Biar stressnya pada kabur ke Nathan! 😂"
                             </p>
                             <p class="text-sm text-gray-600">
                                 Nanti kalau udah happy, kita makan-makan yuk!<br>
-                                <span class="font-semibold">Menu spesial: Mie ayam + Nathan 🍜🐱</span>
+                                <span class="font-semibold">Menu spesial: Mie ayam + ketawa gratis! 🍜😂</span>
                             </p>
                         </div>
                         
@@ -405,7 +406,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div class="text-sm font-bold text-gray-800">- Nathan Si Tukang Lucu 😎</div>
-                                    <div class="text-xs text-gray-500">(Professional bikin Caca senyum!)</div>
+                                    <div class="text-xs text-gray-500">(Professional bikin Caca senyum sejak 2024!)</div>
                                 </div>
                             </div>
                         </div>
@@ -426,14 +427,14 @@
             
             <div class="text-xs text-gray-500 max-w-md mx-auto bg-white/50 p-3 rounded-lg">
                 <div class="font-semibold mb-1">DISCLAIMER LUCU:</div>
-                "Game ini tidak mengandung bahan pengawet, tapi mengandung nathan 100%!<br>
-                Efek samping: Bisa bikin pipi anak kecil pegel karena senyum terus! 😁"
+                "Game ini tidak mengandung bahan pengawet, tapi mengandung 100% bahan ketawa!<br>
+                Efek samping: Bisa bikin pipi pegel karena senyum terus! 😁"
             </div>
             
             <div class="flex justify-center gap-4 text-2xl">
                 <div class="animate-float" style="animation-delay: 0s;">🌸</div>
                 <div class="animate-bounce" style="animation-delay: 0.2s;">💕</div>
-                <div class="animate-wiggle" style="animation-delay: 0.4s;">🐱</div>
+                <div class="animate-wiggle" style="animation-delay: 0.4s;">😂</div>
                 <div class="animate-float" style="animation-delay: 0.6s;">✨</div>
                 <div class="animate-bounce" style="animation-delay: 0.8s;">🎮</div>
                 <div class="animate-wiggle" style="animation-delay: 1s;">💖</div>
@@ -1017,7 +1018,7 @@
             if (emojiGameState.emojiCount >= 10) {
                 countElement.innerHTML = `${emojiGameState.emojiCount} <span class="text-lg">👑</span>`;
             } else if (emojiGameState.emojiCount >= 5) {
-                countElement.innerHTML = `${emojiGameState.emojiCount} <span class="text-lg">✨</span>';
+                countElement.innerHTML = `${emojiGameState.emojiCount} <span class="text-lg">✨</span>`;
             }
         }
 
@@ -1175,7 +1176,7 @@
             }, 100);
             
             // Funny loading message
-            showHappyMessage("SELAMAT DATANG DI DUNIA LUCU!", "Nathan jamin bakal senyum");
+            showHappyMessage("SELAMAT DATANG DI DUNIA LUCU! 🤡", "Nathan jamin bakal ketawa minimal 5x! 😂");
         });
     </script>
 </body>
