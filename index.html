@@ -3,256 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Untuk Caca - Game Emoji (HTML Only)</title>
+    <title>Untuk Caca dari Nathan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #ffe6f0, #e6f0ff);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            color: #ff66a3;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: #666;
-            font-size: 16px;
-        }
-        
-        .game-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .selection-area {
-            background: white;
+            max-width: 700px;
+            width: 100%;
+            background-color: white;
             border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px dashed #ff66a3;
-        }
-        
-        .selection-area h2 {
-            color: #ff66a3;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .emoji-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-        
-        .emoji-item {
-            font-size: 40px;
-            text-align: center;
-            padding: 15px;
-            background: #fff5f9;
-            border-radius: 10px;
-            border: 2px solid #ffb3d9;
-            cursor: grab;
-            transition: all 0.3s;
-            user-select: none;
-        }
-        
-        .emoji-item:hover {
-            transform: scale(1.1);
-            background: #ffe6f0;
-            box-shadow: 0 5px 10px rgba(255,102,163,0.2);
-        }
-        
-        .emoji-item:active {
-            transform: scale(0.95);
-        }
-        
-        .target-area {
-            background: linear-gradient(135deg, #e6f7ff, #ffe6f7);
-            border-radius: 15px;
-            padding: 25px;
-            min-height: 200px;
-            border: 3px solid #66ccff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             position: relative;
         }
         
-        .target-area::before {
-            content: "🎯 SERET EMOJI KE SINI! 🎯";
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #ff66a3;
-            font-weight: bold;
-            border: 2px solid #ff66a3;
+        .header {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
         }
         
-        .target-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            min-height: 150px;
-            place-items: center;
-        }
-        
-        .drop-zone {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 10px;
-            border: 2px dashed #66ccff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #ccc;
-            transition: all 0.3s;
-        }
-        
-        .drop-zone.hover {
-            background: rgba(102, 204, 255, 0.2);
-            border-color: #ff66a3;
-            transform: scale(1.05);
-        }
-        
-        .emoji-placed {
-            font-size: 40px;
-            animation: bounce 0.5s;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        .instructions {
-            background: #fff9e6;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 5px solid #ffcc00;
-            margin-top: 20px;
-        }
-        
-        .instructions h3 {
-            color: #ff9900;
+        .header h1 {
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 300;
         }
         
-        .instructions ul {
-            padding-left: 20px;
+        .header h2 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
         }
         
-        .instructions li {
-            margin-bottom: 8px;
-            color: #666;
-        }
-        
-        .instructions strong {
-            color: #ff66a3;
-        }
-        
-        .mobile-instructions {
-            display: none;
-            background: #e6ffe6;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 5px solid #66cc66;
-            margin-top: 15px;
-        }
-        
-        .mobile-instructions h3 {
-            color: #339933;
-            margin-bottom: 10px;
+        .content {
+            padding: 30px;
         }
         
         .message-box {
-            background: linear-gradient(135deg, #ff66a3, #66ccff);
-            color: white;
-            padding: 15px;
+            background-color: #f8f9fa;
             border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #6a11cb;
+        }
+        
+        .message {
+            line-height: 1.7;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .message p {
+            margin-bottom: 20px;
+        }
+        
+        .quote {
+            font-style: italic;
             text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 18px;
+            padding: 20px;
+            margin: 25px 0;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: #2575fc;
+            border-left: 4px solid #2575fc;
+            border-right: 4px solid #2575fc;
         }
         
-        .funny-fact {
-            background: #f0e6ff;
+        .reminders {
+            background-color: #fff8f8;
             border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            border: 2px solid #9966ff;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #ff6b6b;
         }
         
-        .funny-fact h3 {
-            color: #9966ff;
-            margin-bottom: 10px;
+        .reminders h3 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        
+        .reminders ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .reminders li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .reminders li:before {
+            content: "💫";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .name {
+            font-size: 1.3rem;
+            color: #6a11cb;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
         
         @media (max-width: 768px) {
-            .emoji-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .header h1 {
+                font-size: 1.8rem;
             }
             
-            .target-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .content {
+                padding: 20px;
             }
             
-            .mobile-instructions {
-                display: block;
-            }
-            
-            .emoji-item {
-                font-size: 35px;
-                padding: 12px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .emoji-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .target-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .emoji-item {
-                font-size: 30px;
-                padding: 10px;
-            }
-            
-            .drop-zone {
-                width: 70px;
-                height: 70px;
+            .message-box, .reminders {
+                padding: 20px;
             }
         }
     </style>
@@ -260,188 +172,76 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🌸 GAME EMOJI LUCU UNTUK CACA 🌸</h1>
-            <p>"Main game ini sambil senyum yaa~ Biar Nathan juga ikut senyum!" 😊</p>
+            <h1>Untuk Caca</h1>
+            <h2>Dari Nathan yang peduli</h2>
         </div>
         
-        <div class="game-area">
-            <!-- Area Seleksi Emoji -->
-            <div class="selection-area">
-                <h2>📱 PILIH EMOJI KESAYANGANMU</h2>
-                <div class="emoji-grid" id="emojiSelection">
-                    <div class="emoji-item" draggable="true" data-emoji="😊">😊</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🥰">🥰</div>
-                    <div class="emoji-item" draggable="true" data-emoji="😍">😍</div>
-                    <div class="emoji-item" draggable="true" data-emoji="💖">💖</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🌸">🌸</div>
-                    <div class="emoji-item" draggable="true" data-emoji="✨">✨</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🌟">🌟</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🎀">🎀</div>
-                    <div class="emoji-item" draggable="true" data-emoji="💕">💕</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🦋">🦋</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🐇">🐇</div>
-                    <div class="emoji-item" draggable="true" data-emoji="🍭">🍭</div>
+        <div class="content">
+            <div class="message-box">
+                <div class="message">
+                    <p>Hai Caca,</p>
+                    
+                    <p>Aku dengar kamu sedang sedih. Aku ingin kamu tahu bahwa perasaanmu valid dan tidak apa-apa untuk merasa sedih. Setiap orang melewati hari-hari seperti ini, dan kamu tidak sendirian.</p>
+                    
+                    <p>Aku ingat betapa indahnya senyumanmu dan betapa hangatnya tawamu. Dunia memang terasa berat kadang-kadang, tapi aku yakin kamu punya kekuatan untuk melewatinya. Kamu lebih kuat dari yang kamu kira.</p>
+                    
+                    <div class="quote">
+                        "Badai tidak akan selamanya. Akan selalu ada langit cerah setelahnya."
+                    </div>
+                    
+                    <p>Jika kamu butuh teman bicara, aku di sini untuk mendengarkan. Tidak perlu terburu-buru untuk merasa baik. Ambil waktumu, tapi ingat bahwa ada banyak hal baik yang menantimu di depan.</p>
+                    
+                    <p>Kamu adalah orang yang istimewa, dan aku sangat menghargai keberadaanmu. Jangan biarkan kesedihan mengaburkan semua kebaikan yang ada dalam dirimu.</p>
                 </div>
             </div>
             
-            <!-- Area Target (Drop Zone) -->
-            <div class="target-area">
-                <div class="target-grid" id="targetGrid">
-                    <div class="drop-zone" data-zone="1" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">👉</div>
-                    <div class="drop-zone" data-zone="2" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">🎯</div>
-                    <div class="drop-zone" data-zone="3" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">💖</div>
-                    <div class="drop-zone" data-zone="4" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">✨</div>
-                    <div class="drop-zone" data-zone="5" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">😊</div>
-                    <div class="drop-zone" data-zone="6" ondrop="dropEmoji(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">🎉</div>
-                </div>
-            </div>
-            
-            <!-- Instruksi untuk Desktop -->
-            <div class="instructions">
-                <h3>📖 CARA MAIN (Desktop):</h3>
+            <div class="reminders">
+                <h3>Beberapa hal yang mungkin bisa membantu</h3>
                 <ul>
-                    <li><strong>Klik & Tahan</strong> emoji yang kamu suka</li>
-                    <li><strong>Seret</strong> ke salah satu kotak di atas</li>
-                    <li><strong>Lepaskan</strong> untuk menempatkan emoji</li>
-                    <li>Kalau mau ganti, <strong>seret emoji baru</strong> ke kotak yang sama</li>
+                    <li>Nanti malam saat kamu latihan nyanyi, nikmati saja prosesnya. Biarkan musik membawa perasaanmu.</li>
+                    <li>Ingatlah momen-momen bahagia yang pernah kamu alami, sekecil apapun itu.</li>
+                    <li>Lakukan sesuatu yang kamu sukai, meskipun hanya sebentar. Membaca, mendengar musik, atau berjalan-jalan.</li>
+                    <li>Jangan ragu untuk berbicara dengan seseorang jika beban terasa berat. Aku akan selalu siap mendengarkan.</li>
+                    <li>Percayalah bahwa perasaan ini akan berlalu, dan kamu akan menemukan kekuatan dari pengalaman ini.</li>
                 </ul>
             </div>
             
-            <!-- Instruksi untuk Mobile -->
-            <div class="mobile-instructions">
-                <h3>📱 CARA MAIN (Mobile/Tablet):</h3>
-                <ul>
-                    <li><strong>Sentuh & Tahan</strong> emoji kesukaanmu</li>
-                    <li><strong>Geser</strong> jari ke kotak yang dituju</li>
-                    <li><strong>Angkat jari</strong> untuk meletakkan emoji</li>
-                    <li>Bisa dicoba berkali-kali sampai puas! 😄</li>
-                </ul>
+            <div class="signature">
+                <p>Selalu ada untukmu,</p>
+                <div class="name">Nathan <span class="heart">❤️</span></div>
             </div>
-            
-            <!-- Message Box -->
-            <div class="message-box" id="messageBox">
-                💌 Ayo kumpulin emoji biar hati makin happy! 💌
-            </div>
-            
-            <!-- Funny Facts -->
-            <div class="funny-fact">
-                <h3>🎭 FAKTA LUCU DARI NATHAN:</h3>
-                <p>"Setiap emoji yang Caca tarik ke kotak, Nathan dapat 1 senyuman! Jadi tarik yang banyak yaa~ 😘"</p>
-                <p style="margin-top: 10px; font-style: italic; color: #666;">
-                    Psst... Emoji 💖 itu favorit Nathan! Tapi jangan bilang siapa-siapa ya! 🤫
-                </p>
-            </div>
+        </div>
+        
+        <div class="footer">
+            Pesan ini dibuat dengan kepedulian untuk Caca. Kamu berharga.
         </div>
     </div>
 
     <script>
-        // Daftar pesan lucu yang akan muncul
-        const funnyMessages = [
-            "Wah, Caca pilih yang lucu banget! 😍",
-            "Nathan suka pilihan Caca! 👍",
-            "Emoji itu seneng banget dipilih Caca! 💕",
-            "Hebat! Emojinya makin banyak! 🎉",
-            "Caca jago nih milih emoji! 👑",
-            "Wih, kombinasi yang bagus! ✨",
-            "Nathan ikut senyum liatnya! 😊",
-            "Makin rame makin seru! 🥳",
-            "Caca pasti lagi happy nih! 🌟",
-            "Keren! Emoji special! 💎"
-        ];
-        
-        // Daftar fakta lucu tentang emoji
-        const emojiFacts = {
-            "😊": "Emoji ini senyum setiap kali liat Caca!",
-            "🥰": "Dia pengen peluk Caca tiap hari!",
-            "😍": "Mata berbinar karena Caca cantik!",
-            "💖": "Warna pink favorit Nathan!",
-            "🌸": "Bunga ini mekar kalo Caca senyum!",
-            "✨": "Berkilau kayak senyuman Caca!",
-            "🌟": "Bintang paling terang di langit!",
-            "🎀": "Pita ini pengen dikasih ke Caca!",
-            "💕": "Double love dari Nathan!",
-            "🦋": "Kupu-kupu ini terbang senang!",
-            "🐇": "Kelincinya lompat-lompat gembira!",
-            "🍭": "Manisnya kayak Caca!"
-        };
-
-        // Fungsi untuk drag & drop
-        function allowDrop(event) {
-            event.preventDefault();
-            event.currentTarget.classList.add('hover');
-        }
-        
-        function removeHover(event) {
-            event.currentTarget.classList.remove('hover');
-        }
-        
-        function dragEmoji(event) {
-            event.dataTransfer.setData("text/plain", event.target.dataset.emoji);
-            event.target.style.opacity = "0.5";
-            
-            // Tampilkan pesan saat mulai drag
-            const messageBox = document.getElementById('messageBox');
-            messageBox.textContent = "🚀 Seret ke kotak yang kamu suka! 🚀";
-            messageBox.style.background = "linear-gradient(135deg, #ffcc00, #ff66a3)";
-        }
-        
-        function dropEmoji(event) {
-            event.preventDefault();
-            const emoji = event.dataTransfer.getData("text/plain");
-            const zone = event.currentTarget;
-            
-            // Reset opacity emoji yang didrag
-            document.querySelectorAll('.emoji-item').forEach(item => {
-                item.style.opacity = "1";
-            });
-            
-            // Hapus class hover
-            zone.classList.remove('hover');
-            
-            // Tampilkan emoji di drop zone
-            zone.innerHTML = `<div class="emoji-placed">${emoji}</div>`;
-            
-            // Tampilkan pesan lucu random
-            const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-            const messageBox = document.getElementById('messageBox');
-            messageBox.textContent = randomMessage;
-            messageBox.style.background = "linear-gradient(135deg, #66ccff, #9966ff)";
-            
-            // Tambahkan efek visual
-            messageBox.style.animation = "none";
-            setTimeout(() => {
-                messageBox.style.animation = "bounce 0.5s";
-            }, 10);
-            
-            // Tampilkan fakta tentang emoji yang dipilih
-            if (emojiFacts[emoji]) {
-                setTimeout(() => {
-                    messageBox.innerHTML = `${emojiFacts[emoji]} <br><small style="font-size:14px">~ ${emoji} ~</small>`;
-                    messageBox.style.background = "linear-gradient(135deg, #66ff66, #66ccff)";
-                }, 2000);
-            }
-        }
-        
-        // Reset drag opacity saat selesai
-        document.querySelectorAll('.emoji-item').forEach(item => {
-            item.addEventListener('dragend', function() {
-                this.style.opacity = "1";
-            });
-        });
-        
-        // Inisialisasi drag untuk semua emoji
+        // Efek sederhana untuk heartbeat
         document.addEventListener('DOMContentLoaded', function() {
-            const emojiItems = document.querySelectorAll('.emoji-item');
-            emojiItems.forEach(item => {
-                item.addEventListener('dragstart', dragEmoji);
+            const heart = document.querySelector('.heart');
+            
+            // Tambahkan interaksi kecil
+            heart.addEventListener('click', function() {
+                this.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
             });
             
-            // Pesan welcome
-            setTimeout(() => {
-                const messageBox = document.getElementById('messageBox');
-                messageBox.innerHTML = "🎮 SELAMAT BERGABUNG DI GAME BAHAGIA! 🎮<br><small>Dari Nathan yang pengen Caca selalu senyum</small>";
-                messageBox.style.background = "linear-gradient(135deg, #ff66a3, #9966ff)";
-            }, 1000);
+            // Tambahkan efek muncul bertahap pada konten
+            const contentElements = document.querySelectorAll('.message-box, .reminders, .signature');
+            contentElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 300 + (index * 200));
+            });
         });
     </script>
 </body>
