@@ -61,11 +61,6 @@
         .balloon-special {
             filter: drop-shadow(0 0 8px currentColor);
         }
-        
-        /* Funny cursor for balloon game */
-        .cursor-pop {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="8" y="24" font-size="24">👆</text></svg>'), auto;
-        }
     </style>
 </head>
 <body class="font-inter min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4">
@@ -123,7 +118,7 @@
                     <div class="mb-4 text-center">
                         <div class="inline-flex items-center gap-2 bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm mb-2">
                             <i class="fas fa-fire text-orange-500"></i>
-                            <span>Game Anti-Boring!</span>
+                            <span>Game for anak kecil!</span>
                         </div>
                         <p class="text-gray-700 text-sm">
                             Klik balon-balon lucunya sebelum mereka kabur ke awan! 🌤️<br>
@@ -133,7 +128,7 @@
                     
                     <div id="balloonGame" class="space-y-5">
                         <!-- Game Area -->
-                        <div class="relative bg-gradient-to-b from-blue-100 via-pink-100 to-purple-100 rounded-xl overflow-hidden border-2 border-pink-300 cursor-pop" 
+                        <div class="relative bg-gradient-to-b from-blue-100 via-pink-100 to-purple-100 rounded-xl overflow-hidden border-2 border-pink-300 cursor-pointer" 
                              style="height: 320px;" id="balloonArea">
                             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
                             <div id="balloonContainer" class="relative w-full h-full"></div>
@@ -152,7 +147,7 @@
                                             <div class="font-semibold mb-1">Aturan lucu:</div>
                                             1. Klik balon yang paling menggemaskan!<br>
                                             2. Balon emoji ✨ = JACKPOT!<br>
-                                            3. Kalau bisa, jangan sampe ketawa sendiri! 😆
+                                            3. Kalau bisa, caca senyum ya
                                         </div>
                                         <button onclick="startBalloonGame()" 
                                                 class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-3 rounded-lg text-sm font-bold hover:shadow-xl transition-all hover:scale-105 active:scale-95 group">
@@ -210,7 +205,7 @@
                                 <div class="text-2xl animate-wiggle">💬</div>
                                 <div class="flex-1">
                                     <p class="text-sm text-gray-700 font-medium" id="balloonMessageText">
-                                        Siap-siap pecahin balon! Tapi jangan sampe ketawa ngilu! 😂
+                                        Siap-siap pecahin balon! 
                                     </p>
                                     <div class="text-xs text-gray-500 mt-1 italic" id="balloonSubMessage">
                                         Tips: Balon warna pink itu yang paling manja! 💕
@@ -222,12 +217,11 @@
                         <!-- Funny Tips -->
                         <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-3 border-2 border-yellow-300">
                             <div class="flex items-start gap-3">
-                                <div class="text-2xl animate-bounce">🤡</div>
                                 <div>
                                     <div class="text-xs font-bold text-gray-800 mb-1">FAKTA LUCU NATHAN:</div>
                                     <div class="text-xs text-gray-700">
-                                        "Dulu Nathan bikin game ini, malah ketawa sendiri 10 menit!<br>
-                                        Sampe balonnya pada kabur nangis! 😭"
+                                        "Dulu Nathan suka senyum kalo anak kecil senyum!<br>
+                                        Jadi anak kecil harus senyum ya!"
                                     </div>
                                 </div>
                             </div>
@@ -391,11 +385,11 @@
                         
                         <div class="space-y-2">
                             <p class="text-gray-700">
-                                "Jadi, main game ini dulu yaa~ Biar stressnya pada kabur ke Nathan! 😂"
+                                "Jadi, main game ini dulu yaa~ Biar stressnya pada kabur ke Nathan! 🐱"
                             </p>
                             <p class="text-sm text-gray-600">
                                 Nanti kalau udah happy, kita makan-makan yuk!<br>
-                                <span class="font-semibold">Menu spesial: Mie ayam + ketawa gratis! 🍜😂</span>
+                                <span class="font-semibold">Menu spesial: Mie ayam + Nathan 🍜🐱</span>
                             </p>
                         </div>
                         
@@ -406,7 +400,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div class="text-sm font-bold text-gray-800">- Nathan Si Tukang Lucu 😎</div>
-                                    <div class="text-xs text-gray-500">(Professional bikin Caca senyum sejak 2024!)</div>
+                                    <div class="text-xs text-gray-500">(Professional bikin Caca senyum!)</div>
                                 </div>
                             </div>
                         </div>
@@ -427,14 +421,14 @@
             
             <div class="text-xs text-gray-500 max-w-md mx-auto bg-white/50 p-3 rounded-lg">
                 <div class="font-semibold mb-1">DISCLAIMER LUCU:</div>
-                "Game ini tidak mengandung bahan pengawet, tapi mengandung 100% bahan ketawa!<br>
-                Efek samping: Bisa bikin pipi pegel karena senyum terus! 😁"
+                "Game ini tidak mengandung bahan pengawet, tapi mengandung nathan 100%!<br>
+                Efek samping: Bisa bikin pipi anak kecil pegel karena senyum terus! 😁"
             </div>
             
             <div class="flex justify-center gap-4 text-2xl">
                 <div class="animate-float" style="animation-delay: 0s;">🌸</div>
                 <div class="animate-bounce" style="animation-delay: 0.2s;">💕</div>
-                <div class="animate-wiggle" style="animation-delay: 0.4s;">😂</div>
+                <div class="animate-wiggle" style="animation-delay: 0.4s;">🐱</div>
                 <div class="animate-float" style="animation-delay: 0.6s;">✨</div>
                 <div class="animate-bounce" style="animation-delay: 0.8s;">🎮</div>
                 <div class="animate-wiggle" style="animation-delay: 1s;">💖</div>
@@ -516,7 +510,7 @@
             balloonGameState.spawnInterval = setInterval(() => {
                 if (balloonGameState.isPlaying && balloonGameState.balloons.length < 10) {
                     spawnBalloon();
-                    if (Math.random() > 0.7) spawnBalloon(); // Double spawn sometimes
+                    if (Math.random() > 0.7) spawnBalloon();
                 }
             }, 600 + Math.random() * 400);
             
@@ -592,14 +586,11 @@
                 }
                 
                 currentY -= speed;
-                // Add swinging motion
                 const currentX = parseFloat(balloon.style.left);
                 balloon.style.left = `${currentX + (swing * swingDirection)}%`;
                 swingDirection *= -1;
                 
                 balloon.style.bottom = `${currentY}%`;
-                
-                // Funny rotation
                 balloon.style.transform = `rotate(${Math.sin(Date.now() * 0.01) * 10}deg)`;
                 
                 // Remove balloon if it goes too high
@@ -631,7 +622,6 @@
             const now = Date.now();
             if (now - balloonGameState.lastPopTime < 800) {
                 balloonGameState.combo++;
-                // Bonus points for combo
                 type.points += balloonGameState.combo * 8;
                 if (balloonGameState.combo > 5) type.points *= 1.5;
             } else {
@@ -882,66 +872,82 @@
             // Create draggable emojis with funny info
             emojiGameState.emojiOptions.forEach((emojiObj, index) => {
                 const emojiElement = document.createElement('div');
-                emojiElement.className = 'text-2xl p-3 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-115 transition-all cursor-grab active:scale-95 group relative border-2 border-transparent hover:border-pink-300';
+                emojiElement.className = 'text-2xl p-3 bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-115 transition-all cursor-pointer active:scale-95 group relative border-2 border-transparent hover:border-pink-300';
                 emojiElement.textContent = emojiObj.emoji;
-                emojiElement.draggable = true;
                 emojiElement.title = `${emojiObj.name}: ${emojiObj.quote}`;
                 emojiElement.dataset.index = index;
                 
-                // Add funny tooltip on hover
-                emojiElement.addEventListener('mouseenter', function() {
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 text-white text-xs rounded-lg py-1 px-2 whitespace-nowrap z-50 opacity-0 group-hover:opacity-100 transition-opacity';
-                    tooltip.textContent = `${emojiObj.name}: ${emojiObj.quote}`;
-                    this.appendChild(tooltip);
+                // Click to drag emoji
+                emojiElement.addEventListener('mousedown', function(e) {
+                    startDragEmoji(e, index);
                 });
                 
-                emojiElement.addEventListener('dragstart', handleEmojiDragStart);
                 emojiSelection.appendChild(emojiElement);
             });
-            
-            // Setup drop zone
-            const targetArea = document.getElementById('targetArea');
-            targetArea.addEventListener('dragover', handleEmojiDragOver);
-            targetArea.addEventListener('drop', handleEmojiDrop);
             
             // Initial funny message
             updateHappyStatus();
         }
 
-        function handleEmojiDragStart(e) {
-            const index = e.target.dataset.index;
-            e.dataTransfer.setData('text/plain', index);
-            e.target.classList.add('opacity-50');
+        let draggedEmoji = null;
+
+        function startDragEmoji(e, index) {
+            draggedEmoji = emojiGameState.emojiOptions[index];
+            
+            // Create a temporary drag image
+            const dragImage = document.createElement('div');
+            dragImage.className = 'text-4xl fixed pointer-events-none z-50';
+            dragImage.textContent = draggedEmoji.emoji;
+            dragImage.style.left = `${e.clientX - 20}px`;
+            dragImage.style.top = `${e.clientY - 20}px`;
+            dragImage.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(dragImage);
+            
+            // Update drag image position on mouse move
+            const mouseMoveHandler = (moveEvent) => {
+                dragImage.style.left = `${moveEvent.clientX}px`;
+                dragImage.style.top = `${moveEvent.clientY}px`;
+            };
+            
+            // Handle mouse up
+            const mouseUpHandler = (upEvent) => {
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+                
+                // Check if dropped on target area
+                const targetArea = document.getElementById('targetArea');
+                const rect = targetArea.getBoundingClientRect();
+                
+                if (upEvent.clientX >= rect.left && 
+                    upEvent.clientX <= rect.right && 
+                    upEvent.clientY >= rect.top && 
+                    upEvent.clientY <= rect.bottom) {
+                    
+                    handleEmojiDrop(draggedEmoji);
+                }
+                
+                // Remove drag image
+                if (dragImage.parentNode) {
+                    dragImage.parentNode.removeChild(dragImage);
+                }
+                draggedEmoji = null;
+            };
+            
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
         }
 
-        function handleEmojiDragOver(e) {
-            e.preventDefault();
-            e.currentTarget.style.background = 'linear-gradient(45deg, rgba(255,255,255,0.4), rgba(255,182,193,0.2))';
-        }
-
-        function handleEmojiDrop(e) {
-            e.preventDefault();
-            e.currentTarget.style.background = '';
-            
-            const index = e.dataTransfer.getData('text/plain');
-            const emojiObj = emojiGameState.emojiOptions[index];
-            
+        function handleEmojiDrop(emojiObj) {
             // Remove empty message if present
             const emptyMessage = document.getElementById('emptyMessage');
             if (emptyMessage) emptyMessage.style.display = 'none';
-            
-            // Reset dragged emoji opacity
-            document.querySelectorAll('#emojiSelection div').forEach(el => {
-                el.classList.remove('opacity-50');
-            });
             
             // Create emoji element with funny animation
             const emojiElement = document.createElement('div');
             emojiElement.className = 'relative group';
             
             const emojiInner = document.createElement('div');
-            emojiInner.className = 'text-4xl p-2 animate-bounce cursor-move hover:scale-125 transition-transform';
+            emojiInner.className = 'text-4xl p-2 animate-bounce cursor-pointer hover:scale-125 transition-transform';
             emojiInner.textContent = emojiObj.emoji;
             emojiInner.style.animationDelay = `${Math.random() * 0.5}s`;
             emojiInner.title = `Klik untuk dengar cerita ${emojiObj.name}!`;
@@ -960,10 +966,9 @@
                 showHappyMessage(`${emojiObj.name} bilang: "${funnyQuote}"`, `~ ${emojiObj.emoji} ~`);
             };
             
-            // Make it draggable within target area
-            emojiInner.draggable = true;
-            emojiInner.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text/plain', index);
+            // Make it draggable for reorder
+            emojiInner.addEventListener('mousedown', function(e) {
+                startDragEmoji(e, emojiGameState.emojiOptions.findIndex(e => e.emoji === emojiObj.emoji));
             });
             
             document.getElementById('targetArea').appendChild(emojiElement);
@@ -1057,7 +1062,10 @@
 
         function showHappyMessage(main, sub) {
             document.getElementById('happyMessageText').textContent = main;
-            document.getElementById('happyMessages').querySelector('.text-xs').textContent = sub;
+            const subElement = document.querySelector('#happyMessages .text-xs');
+            if (subElement) {
+                subElement.textContent = sub;
+            }
             
             // Add animation
             const messageBox = document.getElementById('happyMessages');
@@ -1082,13 +1090,15 @@
             const placedEmojis = document.querySelectorAll('#targetArea .group');
             placedEmojis.forEach((emoji, index) => {
                 const innerEmoji = emoji.querySelector('div');
-                innerEmoji.classList.add('animate-sparkle');
-                innerEmoji.style.animationDelay = `${index * 0.1}s`;
-                
-                // Bounce effect
-                setTimeout(() => {
-                    innerEmoji.classList.add('animate-bounce');
-                }, index * 50);
+                if (innerEmoji) {
+                    innerEmoji.classList.add('animate-sparkle');
+                    innerEmoji.style.animationDelay = `${index * 0.1}s`;
+                    
+                    // Bounce effect
+                    setTimeout(() => {
+                        innerEmoji.classList.add('animate-bounce');
+                    }, index * 50);
+                }
             });
             
             // Confetti effect
@@ -1116,7 +1126,11 @@
                 ], {
                     duration: 1000 + Math.random() * 500,
                     easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)'
-                }).onfinish = () => confetti.remove();
+                }).onfinish = () => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                };
             }
         }
 
@@ -1170,13 +1184,14 @@
             
             // Add some funny effects on load
             setTimeout(() => {
-                document.querySelectorAll('.animate-float').forEach((el, i) => {
+                const floatElements = document.querySelectorAll('.animate-float');
+                floatElements.forEach((el, i) => {
                     el.style.animationDelay = `${i * 0.3}s`;
                 });
             }, 100);
             
             // Funny loading message
-            showHappyMessage("SELAMAT DATANG DI DUNIA LUCU! 🤡", "Nathan jamin bakal ketawa minimal 5x! 😂");
+            showHappyMessage("SELAMAT DATANG DI DUNIA LUCU!", "Nathan jamin bakal senyum");
         });
     </script>
 </body>
