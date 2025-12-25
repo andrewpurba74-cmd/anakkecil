@@ -9,6 +9,11 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
+        /* ================================================== */
+        /*           CSS AWAL + PERUBAHAN DRAMATIS           */
+        /*      SEMUA DALAM SATU FILE - COPY SEMUA!         */
+        /* ================================================== */
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,10 +31,12 @@
             font-family: 'Cormorant Garamond', serif;
         }
         
-        /* Hero Section */
+        /* ======================== */
+        /* 1. HERO SECTION DRAMATIS */
+        /* ======================== */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(34, 84, 61, 0.9), rgba(21, 50, 36, 0.95)),
+            background: linear-gradient(rgba(220, 38, 38, 0.85), rgba(34, 197, 94, 0.85)),
                         url('https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=1600&q=80');
             background-size: cover;
             background-position: center;
@@ -42,7 +49,46 @@
             overflow: hidden;
         }
         
-        /* Starfield Container di atas background */
+        /* ======================== */
+        /* 2. ANIMASI HALAMAN BARU */
+        /* ======================== */
+        /* Halaman tersembunyi */
+        .page-hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Halaman aktif dengan animasi */
+        .page-active {
+            display: block;
+            animation: pageFadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Hero khusus (flex bukan block) */
+        #hero.page-active {
+            display: flex;
+        }
+        
+        /* Apology page khusus (flex) */
+        #apologyPage.page-active {
+            display: flex;
+        }
+        
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ======================== */
+        /* 3. EFEK BINTANG */
+        /* ======================== */
         .starfield {
             position: absolute;
             top: 0;
@@ -53,16 +99,14 @@
             pointer-events: none;
         }
         
-        /* Individual Star Styles - Warna kuning */
         .star {
             position: absolute;
-            background-color: #fbbf24; /* Warna kuning */
+            background-color: #fbbf24;
             border-radius: 50%;
             opacity: 0;
             animation: twinkle var(--twinkle-duration) infinite ease-in-out;
         }
         
-        /* Large Stars */
         .star.large {
             width: 3px;
             height: 3px;
@@ -70,7 +114,6 @@
                        0 0 20px 3px rgba(251, 191, 36, 0.5);
         }
         
-        /* Medium Stars */
         .star.medium {
             width: 2px;
             height: 2px;
@@ -78,7 +121,6 @@
                        0 0 15px 2px rgba(251, 191, 36, 0.3);
         }
         
-        /* Small Stars */
         .star.small {
             width: 1px;
             height: 1px;
@@ -86,7 +128,6 @@
                        0 0 10px 1px rgba(251, 191, 36, 0.2);
         }
         
-        /* Twinkling Animation yang halus */
         @keyframes twinkle {
             0%, 100% {
                 opacity: 0.1;
@@ -106,23 +147,9 @@
             }
         }
         
-        /* Subtle floating animation */
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(var(--float-x), var(--float-y));
-            }
-            50% {
-                transform: translate(calc(var(--float-x) * -1), calc(var(--float-y) * -1));
-            }
-            75% {
-                transform: translate(calc(var(--float-x) * 0.5), calc(var(--float-y) * 0.5));
-            }
-        }
-        
-        /* Hero Content */
+        /* ============================ */
+        /* 4. JUDUL UTAMA - EFEK NEON! */
+        /* ============================ */
         .hero-content {
             position: relative;
             z-index: 2;
@@ -136,36 +163,119 @@
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            color: white;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(220, 38, 38, 0.5),
+                0 0 30px rgba(34, 197, 94, 0.3);
+            animation: neonBlink 1.5s infinite alternate;
         }
         
+        @keyframes neonBlink {
+            from { text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(220, 38, 38, 0.5);
+            }
+            to { text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.7),
+                0 0 15px rgba(220, 38, 38, 0.5),
+                0 0 25px rgba(34, 197, 94, 0.3);
+            }
+        }
+        
+        /* =========================== */
+        /* 5. NAMA "CACA" - SPECIAL! */
+        /* =========================== */
         .hero-content .name {
             font-size: 5rem;
-            color: #fbbf24;
             display: block;
-            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+            background: linear-gradient(90deg, 
+                #dc2626,  /* Merah Natal */
+                #16a34a,  /* Hijau Natal */
+                #dc2626   /* Merah Natal lagi */
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameShine 2s infinite alternate, gradientMove 3s ease infinite;
+            font-weight: bold;
+            margin-top: 10px;
         }
         
-        .open-letter-btn {
-            background: linear-gradient(to right, #f59e0b, #fbbf24);
-            color: #1a202c;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+        @keyframes nameShine {
+            from { filter: drop-shadow(0 0 5px rgba(220, 38, 38, 0.7)); }
+            to { filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.7)); }
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* =========================== */
+        /* 6. TOMBOL - NEON RAINBOW! */
+        /* =========================== */
+        .open-letter-btn, .apology-btn {
+            background: linear-gradient(90deg, 
+                #dc2626, #ef4444, #16a34a, #22c55e
+            );
+            background-size: 300% 100%;
+            color: white !important;
             font-weight: bold;
-            border-radius: 10px;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 45px;
+            font-size: 1.3rem;
             cursor: pointer;
             margin-top: 40px;
+            animation: gradientMove 3s ease infinite;
+            box-shadow: 
+                0 0 15px rgba(220, 38, 38, 0.4),
+                0 0 30px rgba(34, 197, 94, 0.2);
             transition: all 0.3s;
             position: relative;
             z-index: 2;
         }
         
-        .open-letter-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .open-letter-btn:hover, .apology-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 10px 25px rgba(0,0,0,0.3),
+                0 0 20px rgba(220, 38, 38, 0.6);
         }
         
-        /* Letter Section */
+        /* Tombol kembali (back button) */
+        .back-btn {
+            background: linear-gradient(90deg, 
+                #666666, #888888, #aaaaaa, #cccccc,
+                #aaaaaa, #888888, #666666
+            );
+            background-size: 400% 400%;
+            color: white !important;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 10px;
+            animation: gradientMove 4s ease infinite;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107, 114, 128, 0.3);
+        }
+        
+        /* ======================== */
+        /* 7. SURAT SECTION */
+        /* ======================== */
         .letter {
             padding: 80px 20px;
             background-color: #fefce8;
@@ -174,33 +284,59 @@
         }
         
         .letter-content {
-            background: white;
+            background: 
+                linear-gradient(rgba(253, 245, 230, 0.9), rgba(253, 245, 230, 0.9)),
+                url('https://www.transparenttextures.com/patterns/old-wall.png');
             padding: 50px;
             border-radius: 20px;
+            border: 15px solid transparent;
+            border-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png') 30 stretch;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #fbbf24;
+            position: relative;
+            animation: contentAppear 1s ease-out 0.3s both;
         }
         
-        /* Gallery Section - DIPERBAIKI UNTUK 7 FOTO */
+        @keyframes contentAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .letter-content::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed rgba(139, 69, 19, 0.3);
+            pointer-events: none;
+        }
+        
+        /* ========================== */
+        /* 8. GALERI - PERUBAHAN BESAR! */
+        /* ========================== */
         .gallery {
             padding: 100px 20px;
-            background-color: #f8f4e9;
-            background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
-                              radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 0, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 255, 0.2) 0%, transparent 40%),
+                linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background-size: 200% 200%;
+            animation: moveBackground 20s infinite linear;
             min-height: 100vh;
             position: relative;
         }
         
-        .gallery::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
-                        linear-gradient(45deg, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
-            pointer-events: none;
+        @keyframes moveBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
         
         .gallery-container {
@@ -211,73 +347,97 @@
         
         .gallery-title {
             text-align: center;
-            color: #7c2d12;
+            color: #ffffff;
             margin-bottom: 80px;
             font-size: 2.8rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             position: relative;
             z-index: 2;
+            animation: titleAppear 1s ease-out 0.5s both;
+        }
+        
+        @keyframes titleAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .gallery-title i {
-            color: #d97706;
+            color: #fbbf24;
             margin: 0 15px;
             animation: twinkle 3s infinite;
         }
         
-        /* Minimalist Wall with Rope - DIPERBAIKI UNTUK BANYAK FOTO */
+        /* Wall Display */
         .wall-display {
-            background: #f8f4e9;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             padding: 60px 40px;
             position: relative;
             box-shadow: 
-                inset 0 0 50px rgba(0,0,0,0.03),
-                0 20px 60px rgba(0,0,0,0.1);
-            border: 1px solid rgba(210, 180, 140, 0.3);
+                inset 0 0 50px rgba(0,0,0,0.1),
+                0 20px 60px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             min-height: 400px;
+            backdrop-filter: blur(5px);
+            animation: contentAppear 1s ease-out 0.7s both;
         }
         
-        /* Jute Rope - DIPERBAIKI UNTUK BANYAK FOTO */
+        /* ======================= */
+        /* 9. TALI GALERI - PELANGI! */
+        /* ======================= */
         .jute-rope {
             position: absolute;
             top: 40px;
             left: 50%;
             transform: translateX(-50%);
             width: 95%;
-            height: 3px;
-            background: linear-gradient(to right,
-                #d2b48c 0%,
-                #b8860b 25%,
-                #d2b48c 50%,
-                #b8860b 75%,
-                #d2b48c 100%);
+            height: 5px;
+            background: linear-gradient(to right, 
+                #ff0000, #ff9900, #ffff00, #00ff00, 
+                #00ffff, #0000ff, #9900ff, #ff0000
+            );
+            background-size: 200% 100%;
+            animation: ropeMove 3s linear infinite;
             z-index: 1;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
             border-radius: 2px;
+        }
+        
+        @keyframes ropeMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
         }
         
         .jute-rope::before,
         .jute-rope::after {
             content: '';
             position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #8B4513;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
         .jute-rope::before {
-            left: -15px;
+            left: -20px;
         }
         
         .jute-rope::after {
-            right: -15px;
+            right: -20px;
         }
         
-        /* Photo Grid - DIPERBAIKI UNTUK 7 FOTO */
+        /* ======================= */
+        /* 10. FOTO - BORDER PELANGI! */
+        /* ======================= */
         .photo-wall {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -287,40 +447,38 @@
             z-index: 2;
         }
         
-        /* Individual Photo Display */
         .photo-display {
             position: relative;
             perspective: 1000px;
             transition: transform 0.5s ease;
-            animation: fadeInUp 0.8s ease-out forwards;
+            animation: photoAppear 0.8s ease-out forwards;
             opacity: 0;
         }
         
-        /* Staggered animation untuk foto */
-        .photo-display:nth-child(1) { animation-delay: 0.1s; }
-        .photo-display:nth-child(2) { animation-delay: 0.2s; }
-        .photo-display:nth-child(3) { animation-delay: 0.3s; }
-        .photo-display:nth-child(4) { animation-delay: 0.4s; }
-        .photo-display:nth-child(5) { animation-delay: 0.5s; }
-        .photo-display:nth-child(6) { animation-delay: 0.6s; }
-        .photo-display:nth-child(7) { animation-delay: 0.7s; }
+        .photo-display:nth-child(1) { animation-delay: 0.8s; }
+        .photo-display:nth-child(2) { animation-delay: 0.9s; }
+        .photo-display:nth-child(3) { animation-delay: 1.0s; }
+        .photo-display:nth-child(4) { animation-delay: 1.1s; }
+        .photo-display:nth-child(5) { animation-delay: 1.2s; }
+        .photo-display:nth-child(6) { animation-delay: 1.3s; }
+        .photo-display:nth-child(7) { animation-delay: 1.4s; }
         
-        @keyframes fadeInUp {
+        @keyframes photoAppear {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(30px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         
         .photo-display:hover {
-            transform: translateY(-15px) rotateX(5deg);
+            transform: translateY(-15px);
         }
         
-        /* Wooden Clothespin */
+        /* Jepitan kayu */
         .clothespin {
             position: absolute;
             top: -25px;
@@ -347,17 +505,25 @@
             border-radius: 1px;
         }
         
-        /* Polaroid-style Photo Frame */
+        /* ======================= */
+        /* 11. BINGKAI FOTO - 3D PELANGI! */
+        /* ======================= */
         .polaroid-frame {
+            border: 5px solid transparent;
+            background: linear-gradient(45deg, 
+                #dc2626, #ef4444, #16a34a, #22c55e
+            ) border-box;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 10px rgba(255, 255, 255, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
             background: white;
             padding: 15px 15px 40px 15px;
             border-radius: 8px;
-            box-shadow: 
-                0 15px 35px rgba(0,0,0,0.15),
-                0 5px 15px rgba(0,0,0,0.1),
-                inset 0 0 0 1px rgba(255,255,255,0.8);
-            transform: rotate(0.5deg);
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -369,18 +535,21 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, #f5f5f5 0%, #e0e0e0 100%);
+            background: linear-gradient(90deg, 
+                #dc2626, #ef4444, #16a34a, #22c55e
+            );
         }
         
         .photo-display:hover .polaroid-frame {
+            transform: perspective(1000px) rotateY(10deg) scale(1.05);
             box-shadow: 
-                0 25px 50px rgba(0,0,0,0.25),
-                0 10px 20px rgba(0,0,0,0.15),
-                inset 0 0 0 1px rgba(255,255,255,0.9);
-            transform: rotate(0deg);
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 12px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(220, 38, 38, 0.4),
+                inset 0 0 40px rgba(255, 255, 255, 0.3);
         }
         
-        /* Square 1:1 Photo */
+        /* Foto persegi - PERBAIKAN ANIMASI: KURANGI ZOOM & EXPOSURE */
         .square-photo {
             width: 100%;
             height: 0;
@@ -388,6 +557,12 @@
             position: relative;
             overflow: hidden;
             border-radius: 4px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .photo-display:hover .square-photo {
+            transform: rotateX(5deg) rotateY(-5deg);
         }
         
         .square-photo img {
@@ -397,84 +572,61 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s ease;
-            filter: sepia(0.2) brightness(1.05) contrast(1.1);
+            transition: all 0.7s ease;
+            filter: brightness(0.95) contrast(1.05) saturate(1.1);
         }
         
         .photo-display:hover .square-photo img {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            filter: brightness(1.05) contrast(1.1) saturate(1.2);
         }
         
-        /* Photo Caption */
+        /* ========================== */
+        /* 12. KETERANGAN FOTO - GLOW! */
+        /* ========================== */
         .photo-caption {
             text-align: center;
             margin-top: 20px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
-            color: #7c2d12;
-            font-style: italic;
-            padding: 0 10px;
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+            padding: 10px 15px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 0 5px black;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
         }
         
         .photo-display:hover .photo-caption {
-            opacity: 1;
+            background: linear-gradient(90deg, rgba(220,38,38,0.3), rgba(34,197,94,0.3));
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
         }
         
-        /* Ambient Lighting Effect */
-        .ambient-light {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(20px);
-            z-index: 0;
-            animation: ambient-float 15s infinite ease-in-out;
-        }
-        
-        .light-1 {
-            top: 20%;
-            left: 10%;
-        }
-        
-        .light-2 {
-            bottom: 20%;
-            right: 10%;
-        }
-        
-        @keyframes ambient-float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -20px) scale(1.1); }
-            66% { transform: translate(-20px, 30px) scale(0.9); }
-        }
-        
-        /* Reflection Message - Pesan Refleksi Baru */
+        /* ========================== */
+        /* 13. PESAN REFLEKSI - BARU! */
+        /* ========================== */
         .reflection-message {
             text-align: center;
             margin: 60px auto 40px;
             max-width: 800px;
             padding: 30px;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(139, 92, 246, 0.05));
+            background: linear-gradient(135deg, 
+                rgba(220, 38, 38, 0.2) 0%, 
+                rgba(239, 68, 68, 0.2) 25%,
+                rgba(34, 197, 94, 0.2) 50%,
+                rgba(22, 163, 74, 0.2) 75%,
+                rgba(220, 38, 38, 0.2) 100%
+            );
+            border: 3px solid transparent;
+            border-image: linear-gradient(45deg, #dc2626, #16a34a, #dc2626) 1;
+            backdrop-filter: blur(10px);
             border-radius: 15px;
-            border: 1px solid rgba(251, 191, 36, 0.2);
             position: relative;
             overflow: hidden;
-            animation: fadeIn 1.5s ease-out forwards;
-        }
-        
-        .reflection-message::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
-            z-index: 0;
+            animation: contentAppear 1s ease-out 1.6s both;
         }
         
         .reflection-content {
@@ -484,9 +636,10 @@
         
         .reflection-icon {
             font-size: 2.5rem;
-            color: #d97706;
+            color: #ffffff;
             margin-bottom: 20px;
             animation: gentle-pulse 2s infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
         
         @keyframes gentle-pulse {
@@ -504,59 +657,60 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
             line-height: 1.6;
-            color: #7c2d12;
+            color: #ffffff;
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         .reflection-subtext {
             font-family: 'Lato', sans-serif;
             font-size: 1.1rem;
-            color: #6b7280;
+            color: #e0e0e0;
             font-style: italic;
             margin-top: 15px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
         
-        /* Navigation Button */
-        .gallery-nav {
-            text-align: center;
-            margin-top: 40px;
-            position: relative;
-            z-index: 3;
-        }
-        
-        /* Footer */
+        /* ========================== */
+        /* 14. FOOTER - GRADIENT BARU */
+        /* ========================== */
         .footer {
             padding: 60px 20px;
-            background: linear-gradient(to bottom, #fefce8, #dcfce7);
+            background: linear-gradient(45deg, 
+                #1a1a2e 0%, 
+                #16213e 25%, 
+                #0f3460 50%, 
+                #1a1a2e 75%, 
+                #16213e 100%
+            );
+            background-size: 400% 400%;
+            animation: footerGradient 10s ease infinite;
+            color: white;
             text-align: center;
             position: relative;
         }
         
-        /* Apology Page - Halaman Permintaan Maaf Baru */
+        @keyframes footerGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* ========================== */
+        /* 15. HALAMAN PERMOHONAN MAAF */
+        /* ========================== */
         .apology-page {
             min-height: 100vh;
             padding: 80px 20px;
-            background: linear-gradient(135deg, #fefce8 0%, #fce7f3 100%);
+            background: linear-gradient(135deg, 
+                rgba(220, 38, 38, 0.1) 0%, 
+                rgba(34, 197, 94, 0.1) 100%
+            );
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .apology-page::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
-            z-index: 0;
         }
         
         .apology-container {
@@ -569,8 +723,10 @@
             border-radius: 20px;
             box-shadow: 
                 0 20px 60px rgba(0, 0, 0, 0.1),
-                0 0 0 1px rgba(251, 191, 36, 0.2);
-            border: 2px solid rgba(251, 191, 36, 0.3);
+                0 0 0 1px rgba(220, 38, 38, 0.2);
+            border: 3px solid transparent;
+            border-image: linear-gradient(45deg, #dc2626, #16a34a, #dc2626) 1;
+            animation: contentAppear 1s ease-out 0.3s both;
         }
         
         .apology-header {
@@ -595,7 +751,7 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: linear-gradient(to right, #f59e0b, #fbbf24);
+            background: linear-gradient(to right, #dc2626, #16a34a);
             border-radius: 2px;
         }
         
@@ -611,122 +767,30 @@
             50% { transform: scale(1.1); }
         }
         
-        .apology-content {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #374151;
-            margin-bottom: 50px;
+        /* ========================== */
+        /* 16. SCROLLBAR CUSTOM */
+        /* ========================== */
+        ::-webkit-scrollbar {
+            width: 12px;
         }
         
-        .apology-text {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(254, 226, 226, 0.2), rgba(254, 249, 195, 0.2));
-            border-radius: 15px;
-            border-left: 4px solid #dc2626;
-            position: relative;
-            overflow: hidden;
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #dc2626, #16a34a, #dc2626);
         }
         
-        .apology-text::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
-            z-index: 0;
-        }
-        
-        .apology-text p {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 15px;
-        }
-        
-        .apology-text p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .apology-signature {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(251, 191, 36, 0.3);
-        }
-        
-        .apology-signature p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: #92400e;
-            margin-bottom: 10px;
-        }
-        
-        .apology-date {
-            color: #6b7280;
-            font-size: 1rem;
-        }
-        
-        /* Button khusus untuk permintaan maaf */
-        .apology-btn {
-            background: linear-gradient(to right, #dc2626, #ef4444);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #dc2626, #ef4444, #16a34a);
             border-radius: 10px;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            border: 2px solid white;
         }
         
-        .apology-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #16a34a, #22c55e, #dc2626);
         }
         
-        /* Tombol kembali */
-        .back-btn {
-            background: linear-gradient(to right, #6b7280, #9ca3af);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .back-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(107, 114, 128, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        /* Responsive Design - DIPERBAIKI UNTUK 7 FOTO */
+        /* ========================== */
+        /* 17. RESPONSIVE DESIGN */
+        /* ========================== */
         @media (max-width: 1400px) {
             .photo-wall {
                 grid-template-columns: repeat(3, 1fr);
@@ -738,10 +802,6 @@
             .photo-wall {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 50px 40px;
-            }
-            
-            .reflection-text {
-                font-size: 1.6rem;
             }
         }
         
@@ -792,12 +852,15 @@
                 font-size: 2.5rem;
             }
             
-            .apology-content {
-                font-size: 1.1rem;
+            /* Nonaktifkan beberapa animasi berat di mobile */
+            .hero-content h1 {
+                animation: none;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             }
             
-            .apology-text {
-                padding: 15px;
+            .open-letter-btn, .apology-btn {
+                animation: none;
+                background: linear-gradient(90deg, #dc2626, #16a34a);
             }
         }
         
@@ -810,10 +873,6 @@
                 font-size: 1.8rem;
             }
             
-            .footer-content h1 {
-                font-size: 2.5rem;
-            }
-            
             .reflection-text {
                 font-size: 1.2rem;
             }
@@ -821,30 +880,28 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section dengan Background Original dan Bintang -->
-    <section class="hero" id="hero">
-        <!-- Container untuk bintang-bintang -->
+    <!-- Hero Section -->
+    <section class="hero page-active" id="hero">
         <div class="starfield" id="starfield"></div>
         
-        <!-- Hero Content -->
         <div class="hero-content">
             <h1>For My Dearest<br><span class="name">Caca</span></h1>
-            <p style="font-size: 1.5rem; margin-top: 20px;">A Christmas Wish Just For You</p>
+            <p style="font-size: 1.5rem; margin-top: 20px; color: white; text-shadow: 0 0 5px rgba(0,0,0,0.5);">A Christmas Wish Just For You</p>
             <button class="open-letter-btn" onclick="openLetter()">
                 <i class="bi bi-envelope-heart"></i> Buka Suratku
             </button>
         </div>
     </section>
 
-    <!-- Letter Section (Hidden by default) -->
-    <section class="letter fade-in" id="letter" style="display: none;">
+    <!-- Letter Section -->
+    <section class="letter page-hidden" id="letter">
         <div class="letter-content">
-            <h2 style="text-align: center; color: #166534; margin-bottom: 40px;">
+            <h2 style="text-align: center; color: #dc2626; margin-bottom: 40px;">
                 <i class="bi bi-heart-fill" style="color: #dc2626;"></i> Sepucuk Surat Untukmu
             </h2>
             
             <div style="font-size: 1.2rem; line-height: 1.8; color: #374151;">
-                <p style="margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: #166534;">
+                <p style="margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: #dc2626;">
                     My Dear Caca,
                 </p>
                 
@@ -884,11 +941,8 @@
         </div>
     </section>
 
-    <!-- Gallery Section (Hidden by default) -->
-    <section class="gallery fade-in" id="gallery" style="display: none;">
-        <div class="ambient-light light-1"></div>
-        <div class="ambient-light light-2"></div>
-        
+    <!-- Gallery Section -->
+    <section class="gallery page-hidden" id="gallery">
         <div class="gallery-container">
             <h2 class="gallery-title">
                 <i class="bi bi-stars"></i> Kenangan Terindah Kita <i class="bi bi-stars"></i>
@@ -898,7 +952,7 @@
                 <div class="jute-rope"></div>
                 
                 <div class="photo-wall">
-                    <!-- Foto 1 - Original -->
+                    <!-- Foto 1 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -909,7 +963,7 @@
                         <div class="photo-caption">Momen indah yang selalu kuingat</div>
                     </div>
                     
-                    <!-- Foto 2 - Original -->
+                    <!-- Foto 2 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -920,7 +974,7 @@
                         <div class="photo-caption">Tawa riangmu adalah musik terindah</div>
                     </div>
                     
-                    <!-- Foto 3 - Original -->
+                    <!-- Foto 3 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -931,7 +985,7 @@
                         <div class="photo-caption">Kenangan manis yang abadi</div>
                     </div>
                     
-                    <!-- Foto 4 - Original -->
+                    <!-- Foto 4 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -942,7 +996,7 @@
                         <div class="photo-caption">Kamu adalah hadiah terindahku</div>
                     </div>
                     
-                    <!-- Foto 5 - Baru -->
+                    <!-- Foto 5 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -953,7 +1007,7 @@
                         <div class="photo-caption">Setiap detik bersamamu berharga</div>
                     </div>
                     
-                    <!-- Foto 6 - Baru -->
+                    <!-- Foto 6 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -964,7 +1018,7 @@
                         <div class="photo-caption">Cerita kita yang tak terlupakan</div>
                     </div>
                     
-                    <!-- Foto 7 - Baru -->
+                    <!-- Foto 7 -->
                     <div class="photo-display">
                         <div class="clothespin"></div>
                         <div class="polaroid-frame">
@@ -977,7 +1031,7 @@
                 </div>
             </div>
             
-            <!-- Pesan Refleksi - Baru Ditambahkan -->
+            <!-- Pesan Refleksi -->
             <div class="reflection-message">
                 <div class="reflection-content">
                     <div class="reflection-icon">
@@ -997,7 +1051,7 @@
                 </div>
             </div>
             
-            <div class="gallery-nav">
+            <div style="text-align: center; margin-top: 40px;">
                 <button class="open-letter-btn" onclick="showFooter()">
                     <i class="bi bi-gift-fill"></i> Pesan Terakhir
                 </button>
@@ -1006,75 +1060,79 @@
     </section>
 
     <!-- Footer -->
-    <section class="footer fade-in" id="footer" style="display: none;">
+    <section class="footer page-hidden" id="footer">
         <div style="max-width: 600px; margin: 0 auto;">
-            <h1 style="font-size: 3.5rem; color: #166534; margin-bottom: 20px;">
+            <h1 style="font-size: 3.5rem; color: #ffffff; margin-bottom: 20px; text-shadow: 0 0 10px rgba(255,255,255,0.5);">
                 Merry Christmas,<br>
-                <span style="color: #d97706; display: block;">My Love</span>
+                <span style="color: #fbbf24; display: block;">My Love</span>
             </h1>
             
-            <p style="font-size: 1.2rem; color: #4b5563; margin-bottom: 40px;">
+            <p style="font-size: 1.2rem; color: #e0e0e0; margin-bottom: 40px;">
                 Semoga keajaiban Natal ini membawa kehangatan dan kebahagiaan ke dalam hatimu
             </p>
             
-            <!-- Tombol untuk membuka halaman permintaan maaf -->
             <div style="margin-bottom: 40px;">
                 <button class="apology-btn" onclick="showApologyPage()">
-                    <i class="bi bi-heartbreak"></i> Baca Permintaan Maafku
+                    <i class="bi bi-heartbreak"></i> Baca Pesan aku
                 </button>
             </div>
             
-            <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 15px; display: inline-block; margin-top: 20px;">
-                <p style="font-size: 1.1rem; color: #92400e;">
+            <div style="background: rgba(251, 191, 36, 0.2); padding: 20px; border-radius: 15px; display: inline-block; margin-top: 20px; backdrop-filter: blur(5px); border: 1px solid rgba(251, 191, 36, 0.3);">
+                <p style="font-size: 1.1rem; color: #ffffff;">
                     <i class="bi bi-heart-fill" style="color: #dc2626;"></i>
                     Made with love for Caca
                     <i class="bi bi-heart-fill" style="color: #dc2626;"></i>
                 </p>
             </div>
             
-            <div style="margin-top: 40px; color: #6b7280;">
+            <div style="margin-top: 40px; color: #a0a0a0;">
                 <p>Christmas 2025</p>
                 <p style="font-size: 0.9rem;">A digital gift from Nathan</p>
             </div>
         </div>
     </section>
 
-    <!-- Apology Page - Halaman Permintaan Maaf Baru -->
-    <section class="apology-page fade-in" id="apologyPage" style="display: none;">
+    <!-- Apology Page -->
+    <section class="apology-page page-hidden" id="apologyPage">
         <div class="apology-container">
             <div class="apology-header">
                 <div class="apology-icon">
                     <i class="bi bi-heartbreak"></i>
                 </div>
-                <h1>Permintaan Maaf Untukmu</h1>
-                <p style="color: #6b7280; font-size: 1.2rem;">Dari hati yang paling dalam...</p>
+                <h1>Pesan buat anak kecil</h1>
+                <p style="color: #6b7280; font-size: 1.2rem;">Dalam semangat Natal yang penuh kebahagiaan...</p>
             </div>
             
-            <div class="apology-content">
-                <div class="apology-text">
-                    <p>Caca tersayang,</p>
+            <div style="font-size: 1.3rem; line-height: 1.8; color: #374151; margin-bottom: 50px;">
+                <div style="margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, rgba(254, 226, 226, 0.2), rgba(220, 252, 231, 0.2)); border-radius: 15px; border-left: 4px solid #dc2626;">
+                    <p style="margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #dc2626;">
+                        Caca Tersayang,
+                    </p>
                     
-                    <p>Di momen Natal yang penuh kasih ini, aku ingin menyampaikan permintaan maaf yang tulus dari lubuk hatiku yang paling dalam.</p>
+                    <p style="margin-bottom: 25px;">
+                        Di Natal yang indah ini, aku ingin bertanya kepada kamuu. Aku mau tau apa pendapat kamu tentang aku di tahun ini. Kamu boleh cerita semua tentang aku untuk menutup tahun ini. aku cuma ingin tau apakah aku sudah baik kepada anak kecil hehe...
+                    </p>
                     
-                    <p>Maafkan aku atas semua kesalahan dan kekuranganku selama ini. Maaf jika ada kata-kataku yang pernah melukai perasaanmu, maaf jika ada sikapku yang membuatmu kecewa, dan maaf jika aku belum bisa menjadi seperti yang kamu harapkan.</p>
+                    <p style="margin-bottom: 25px;">
+                        Tak terasa natal sudah hampir selesai ya. Menurut kamu bagaimana dengan natal di tahun ini? cerita dongg aku mau tau. Oh iya, kehadiranmu di natal ini adalah hadiah terbesar yang pernah Tuhan berikan padaku sehingga kita bisa natalan bersama.
+                    </p>
                     
-                    <p>Setiap hari, aku bersyukur memiliki kamu dalam hidupku. Kamu adalah hadiah terindah yang pernah Tuhan berikan padaku. Namun aku sadar, aku tidak selalu menjadi yang terbaik untukmu.</p>
+                    <p style="margin-bottom: 25px;">
+                        Aku bersyukur untuk setiap momen—setiap percakapan, setiap tawa, bahkan setiap kesalahpahaman yang mengajarkan kita untuk saling memahami lebih dalam. Bersamamu, aku belajar arti cinta yang sesungguhnya: bukan tentang kesempurnaan, tapi tentang menerima dan menghargai satu sama lain apa adanya.
+                    </p>
                     
-                    <p>Tahun ini telah mengajarkan aku banyak hal. Aku belajar bahwa cinta bukan hanya tentang kebahagiaan bersama, tetapi juga tentang saling memaafkan, saling memahami, dan tumbuh bersama.</p>
+                    <p style="margin-bottom: 25px; color: #dc2626; font-weight: bold;">
+                        Anak kecil, aku cuma minta 1 aja dari kamu, jaga terus ya senyuman kamu.
                     
-                    <p>Aku berjanji akan berusaha lebih baik lagi. Aku akan lebih memperhatikan perasaanmu, lebih memahami keinginanmu, dan lebih menghargai setiap momen bersamamu.</p>
-                    
-                    <p>Terima kasih sudah tetap bersamaku meskipun aku punya banyak kekurangan. Terima kasih atas kesabaranmu yang tak pernah habis, terima kasih atas pengertianmu yang selalu ada.</p>
-                    
-                    <p>Di malam Natal yang suci ini, aku berdoa semoga kamu bisa memaafkan semua kesalahanku. Aku ingin memulai tahun baru dengan hati yang bersih dan janji untuk menjadi pribadi yang lebih baik untukmu.</p>
-                    
-                    <p>Kamu adalah segalanya bagiku, dan aku tidak ingin kehilangan kamu karena kesalahan-kesalahanku.</p>
+                    <p style="margin-bottom: 0; font-style: italic; color: #16a34a;">
+                        Terima kasih sudah memilih untuk ada di sisiku. Terima kasih sudah menjadi alasan aku tersenyum setiap hari. Terima kasih sudah menjadi rumah bagiku.
+                    </p>
                 </div>
                 
-                <div class="apology-signature">
-                    <p>Dengan penuh penyesalan dan harapan,</p>
-                    <p style="font-size: 2.2rem; color: #92400e; margin-top: 10px;">Nathan</p>
-                    <p class="apology-date">Christmas 2025</p>
+                <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(220, 38, 38, 0.3);">
+                    <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #92400e; margin-bottom: 10px;">Dengan seluruh cinta yang kumiliki,</p>
+                    <p style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #dc2626; margin-top: 10px;">Nathan</p>
+                    <p style="color: #16a34a; font-size: 1rem; font-style: italic;">Malam Natal, 2025</p>
                 </div>
             </div>
             
@@ -1087,7 +1145,7 @@
     </section>
 
     <script>
-        // Starfield Generation dengan animasi yang lebih halus
+        // Starfield Generation
         function createStarfield() {
             const starfield = document.getElementById('starfield');
             const starCount = 150;
@@ -1112,66 +1170,82 @@
                 const twinkleDuration = 2 + Math.random() * 4;
                 const maxOpacity = 0.3 + Math.random() * 0.5;
                 
-                const floatDistance = 2 + Math.random() * 5;
-                const floatX = Math.cos(Math.random() * Math.PI * 2) * floatDistance;
-                const floatY = Math.sin(Math.random() * Math.PI * 2) * floatDistance;
-                
                 star.style.cssText = `
                     left: ${x}%;
                     top: ${y}%;
                     --twinkle-duration: ${twinkleDuration}s;
                     --max-opacity: ${maxOpacity};
-                    --float-x: ${floatX}px;
-                    --float-y: ${floatY}px;
-                    animation: twinkle ${twinkleDuration}s infinite ease-in-out,
-                               float ${twinkleDuration * 3}s infinite ease-in-out;
-                    animation-delay: ${Math.random() * 2}s;
                 `;
                 
                 starfield.appendChild(star);
             }
         }
         
+        // Fungsi untuk navigasi halaman dengan animasi
+        function switchPage(currentPageId, nextPageId) {
+            const currentPage = document.getElementById(currentPageId);
+            const nextPage = document.getElementById(nextPageId);
+            
+            if (currentPage && nextPage) {
+                // Sembunyikan halaman saat ini
+                currentPage.classList.remove('page-active');
+                currentPage.classList.add('page-hidden');
+                
+                // Tunggu sebentar untuk transisi
+                setTimeout(() => {
+                    // Tampilkan halaman berikutnya
+                    nextPage.classList.remove('page-hidden');
+                    nextPage.classList.add('page-active');
+                    
+                    // Scroll ke atas dengan smooth
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Jika pindah ke galeri, buat bintang baru
+                    if (nextPageId === 'gallery') {
+                        // Reset animasi foto
+                        const photos = document.querySelectorAll('.photo-display');
+                        photos.forEach((photo, index) => {
+                            photo.style.animation = 'none';
+                            setTimeout(() => {
+                                photo.style.animation = `photoAppear 0.8s ease-out ${0.8 + (index * 0.1)}s forwards`;
+                            }, 50);
+                        });
+                    }
+                }, 300);
+            }
+        }
+        
+        // Fungsi untuk navigasi
         function openLetter() {
-            document.getElementById('hero').style.display = 'none';
-            document.getElementById('letter').style.display = 'block';
-            window.scrollTo(0, 0);
+            switchPage('hero', 'letter');
         }
         
         function showGallery() {
-            document.getElementById('letter').style.display = 'none';
-            document.getElementById('gallery').style.display = 'block';
-            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            switchPage('letter', 'gallery');
         }
         
         function showFooter() {
-            document.getElementById('gallery').style.display = 'none';
-            document.getElementById('footer').style.display = 'block';
-            document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+            switchPage('gallery', 'footer');
         }
         
-        // Fungsi untuk menampilkan halaman permintaan maaf
         function showApologyPage() {
-            document.getElementById('footer').style.display = 'none';
-            document.getElementById('apologyPage').style.display = 'flex';
-            document.getElementById('apologyPage').scrollIntoView({ behavior: 'smooth' });
+            switchPage('footer', 'apologyPage');
         }
         
-        // Fungsi untuk kembali ke footer dari halaman permintaan maaf
         function backToFooter() {
-            document.getElementById('apologyPage').style.display = 'none';
-            document.getElementById('footer').style.display = 'block';
-            document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+            switchPage('apologyPage', 'footer');
         }
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             createStarfield();
             
-            // Tambahkan efek stagger untuk foto-foto
+            // Set halaman aktif pertama
+            document.getElementById('hero').classList.add('page-active');
+            
+            // Random rotation untuk foto
             const photos = document.querySelectorAll('.photo-display');
             photos.forEach((photo, index) => {
-                // Random rotation untuk efek natural
                 const randomRotate = (Math.random() - 0.5) * 3;
                 photo.style.transform = `rotate(${randomRotate}deg)`;
             });
