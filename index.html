@@ -465,6 +465,14 @@
             }
         }
         
+        .secret-hearts-float {
+            display: none;
+        }
+        
+        .secret-heart {
+            display: none;
+        }
+        
         /* Blue Flower CSS Art */
         .flower-container {
             display: flex;
@@ -512,61 +520,68 @@
             position: absolute;
             width: 50px;
             height: 30px;
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 50%, #52be80 100%);
-            border-radius: 50% 0% 50% 0%;
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.6),
-                        inset 2px 2px 8px rgba(82, 190, 128, 0.4);
+            background: linear-gradient(135deg, #1e8449 0%, #27ae60 30%, #2ecc71 60%, #52be80 100%);
+            border-radius: 0% 100% 50% 100%;
+            box-shadow: 0 0 12px rgba(46, 204, 113, 0.5);
+            transform-origin: 0% 50%;
         }
         
         .leaf::before {
             content: '';
             position: absolute;
-            width: 2px;
+            width: 1px;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(30, 132, 73, 0.6), transparent);
-            left: 50%;
-            transform: translateX(-50%);
+            background: linear-gradient(to bottom, rgba(30, 132, 73, 0.8), transparent);
+            left: 8px;
+            top: 0;
+            transform: rotate(15deg);
+        }
+        
+        .leaf::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(30, 132, 73, 0.3), transparent 40%);
+            border-radius: 0% 100% 50% 100%;
+            top: 0;
+            left: 0;
         }
         
         .leaf.left {
             left: -45px;
-            top: 50px;
-            transform: rotate(-45deg);
-            animation: leafGrowLeft 2s ease-out 0.3s both, leafFloat 3s ease-in-out 2.3s infinite;
+            top: 45px;
+            transform: rotate(-35deg);
+            animation: leafGrowLeft 2s ease-out 0.3s both;
         }
         
         .leaf.right {
             right: -45px;
-            top: 70px;
-            transform: rotate(45deg) scaleX(-1);
-            animation: leafGrowRight 2s ease-out 0.5s both, leafFloat 3s ease-in-out 2.5s infinite;
+            top: 65px;
+            transform: rotate(35deg) scaleX(-1);
+            animation: leafGrowRight 2s ease-out 0.5s both;
         }
         
         @keyframes leafGrowLeft {
             from {
-                transform: rotate(-45deg) scale(0);
+                transform: rotate(-35deg) scale(0);
                 opacity: 0;
             }
             to {
-                transform: rotate(-45deg) scale(1);
+                transform: rotate(-35deg) scale(1);
                 opacity: 1;
             }
         }
         
         @keyframes leafGrowRight {
             from {
-                transform: rotate(45deg) scaleX(-1) scale(0);
+                transform: rotate(35deg) scaleX(-1) scale(0);
                 opacity: 0;
             }
             to {
-                transform: rotate(45deg) scaleX(-1) scale(1);
+                transform: rotate(35deg) scaleX(-1) scale(1);
                 opacity: 1;
             }
-        }
-        
-        @keyframes leafFloat {
-            0%, 100% { transform: rotate(-45deg) translateY(0); }
-            50% { transform: rotate(-45deg) translateY(-5px); }
         }
         
         .flower-head {
@@ -749,6 +764,32 @@
             box-shadow: 0 20px 60px rgba(255, 110, 196, 0.5);
             transform: scale(0.8);
             transition: transform 0.4s ease;
+            position: relative;
+        }
+        
+        .close-password {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 1.3em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-password:hover {
+            background: rgba(255, 110, 196, 0.3);
+            border-color: #ff6ec4;
+            transform: rotate(90deg);
         }
         
         .password-modal.active .password-content {
@@ -834,8 +875,29 @@
             text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
         }
         
-        .password-error.show {
-            opacity: 1;
+        .close-password {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 1.3em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-password:hover {
+            background: rgba(255, 110, 196, 0.3);
+            border-color: #ff6ec4;
+            transform: rotate(90deg);
         }
 
         .digit {
@@ -1194,11 +1256,13 @@
             }
             
             .leaf.left {
-                left: -38px;
+                left: -36px;
+                top: 40px;
             }
             
             .leaf.right {
-                right: -38px;
+                right: -36px;
+                top: 58px;
             }
             
             .secret-button {
@@ -1242,6 +1306,7 @@
     <!-- Password Modal -->
     <div class="password-modal" id="passwordModal">
         <div class="password-content">
+            <div class="close-password" onclick="closePasswordModal()">✕</div>
             <div class="password-header">
                 <div class="password-icon">🔐</div>
                 <h2>Pesan Terkunci</h2>
@@ -1414,6 +1479,13 @@
             setTimeout(() => passwordInput.focus(), 400);
         }
         
+        function closePasswordModal() {
+            passwordModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            passwordInput.value = '';
+            passwordError.classList.remove('show');
+        }
+        
         function checkPassword() {
             const inputValue = passwordInput.value.toLowerCase().trim();
             
@@ -1453,34 +1525,15 @@
         
         // Secret Modal Functions
         const secretModal = document.getElementById('secretModal');
-        const secretHeartsContainer = document.getElementById('secretHearts');
         
         function openSecretModal() {
             secretModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Create floating hearts in modal
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'secret-heart';
-                    heart.innerHTML = '💖';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 2 + 's';
-                    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    secretHeartsContainer.appendChild(heart);
-                }, i * 200);
-            }
         }
         
         function closeSecretModal() {
             secretModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            
-            // Clear hearts
-            setTimeout(() => {
-                secretHeartsContainer.innerHTML = '';
-            }, 400);
         }
         
         // Close modal when clicking outside
@@ -1490,9 +1543,9 @@
             }
         });
         
-        // Create stars (reduced for mobile performance)
+        // Create stars (minimal for mobile)
         const starsContainer = document.getElementById('stars');
-        const starCount = window.innerWidth < 768 ? 50 : 100;
+        const starCount = window.innerWidth < 768 ? 30 : 80;
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -1504,9 +1557,9 @@
             starsContainer.appendChild(star);
         }
 
-        // Create hearts (reduced frequency for mobile)
+        // Create hearts (much less frequent for mobile)
         const heartsContainer = document.getElementById('hearts');
-        const heartInterval = window.innerWidth < 768 ? 2000 : 1000;
+        const heartInterval = window.innerWidth < 768 ? 3500 : 1500;
         setInterval(() => {
             const heart = document.createElement('div');
             heart.className = 'heart';
@@ -1602,11 +1655,11 @@
             setTimeout(runFirecrackerSequence, 300);
         }
 
-        // Initial animation
-        setTimeout(runFirecrackerSequence, 1000);
+        // Initial animation - REMOVED for mobile performance
+        // User can trigger manually with button
 
-        // Create confetti (reduced frequency for mobile)
-        const confettiInterval = window.innerWidth < 768 ? 600 : 300;
+        // Create confetti (much less for mobile)
+        const confettiInterval = window.innerWidth < 768 ? 1000 : 400;
         setInterval(() => {
             const confetti = document.createElement('div');
             confetti.className = 'confetti';
@@ -1618,13 +1671,14 @@
             setTimeout(() => confetti.remove(), 4500);
         }, confettiInterval);
 
-        // Random fireworks in background (reduced frequency for mobile)
-        const fireworkInterval = window.innerWidth < 768 ? 4000 : 2500;
-        setInterval(() => {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight * 0.6;
-            createFirework(x, y);
-        }, fireworkInterval);
+        // Random fireworks - DISABLED for mobile
+        if (window.innerWidth >= 768) {
+            setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight * 0.6;
+                createFirework(x, y);
+            }, 2500);
+        }
         
         // Click on digits
         digits.forEach((digit, index) => {
